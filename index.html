@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toko Saya</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #2196F3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .daftar-produk {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .produk {
+            background-color: white;
+            width: 220px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .gambar-produk {
+            font-size: 70px;
+        }
+
+        button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1976D2;
+        }
+
+        #keranjang {
+            background-color: white;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🛍️ Toko DONA</h1>
+        <p>Selamat datang di toko kami!</p>
+    </header>
+
+    <div class="daftar-produk">
+
+        <div class="produk">
+            <div class="gambar-produk">👕</div>
+            <h2>Kaos</h2>
+            <p>Kaos nyaman dan berkualitas.</p>
+            <h3>Rp50.000</h3>
+            <button onclick="beli('Kaos', 50000)">
+                Beli Sekarang
+            </button>
+        </div>
+
+        <div class="produk">
+            <div class="gambar-produk">👟</div>
+            <h2>Sepatu</h2>
+            <p>Sepatu keren untuk sehari-hari.</p>
+            <h3>Rp150.000</h3>
+            <button onclick="beli('Sepatu', 150000)">
+                Beli Sekarang
+            </button>
+        </div>
+
+        <div class="produk">
+            <div class="gambar-produk">🎒</div>
+            <h2>Tas</h2>
+            <p>Tas praktis untuk aktivitasmu.</p>
+            <h3>Rp100.000</h3>
+            <button onclick="beli('Tas', 100000)">
+                Beli Sekarang
+            </button>
+        </div>
+
+    </div>
+
+
+    <div id="keranjang">
+
+        <h2>🛒 Keranjang</h2>
+
+        <p id="isiKeranjang">
+            Keranjang masih kosong.
+        </p>
+
+        <h3 id="total">
+            Total: Rp0
+        </h3>
+
+    </div>
+
+
+    <script>
+
+        let totalHarga = 0;
+
+        function beli(namaProduk, harga) {
+
+            totalHarga = totalHarga + harga;
+
+            document.getElementById("isiKeranjang").innerText =
+                namaProduk + " berhasil ditambahkan!";
+
+            document.getElementById("total").innerText =
+                "Total: Rp" + totalHarga.toLocaleString("id-ID");
+        }
+
+    </script>
+
+</body>
+</html>
