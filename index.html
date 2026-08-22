@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Our Memories ❤️</title>
-
     <style>
+        /* ===== RESET ===== */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: Georgia, 'Times New Roman', serif;
-            background: #fff8fa;
+            background: #0b0a0c;
             color: #3b3033;
         }
 
-        /* =========================
-           HERO
-        ========================= */
-
+        /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -34,823 +28,587 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background:
-                linear-gradient(
-                    rgba(255, 235, 242, 0.82),
-                    rgba(255, 248, 250, 0.92)
-                ),
-                radial-gradient(circle at top left, #ffd6e5, transparent 45%),
-                radial-gradient(circle at bottom right, #f7c8d8, transparent 45%);
             position: relative;
             overflow: hidden;
+            background: linear-gradient(145deg, #1a0f14 0%, #2d1a24 30%, #1f0f1a 70%, #0d080b 100%);
+        }
+        /* Efek bintang berkilau */
+        .stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, #ffb6c1, transparent),
+                radial-gradient(2px 2px at 40px 70px, #ffd1dc, transparent),
+                radial-gradient(2px 2px at 50px 160px, #ffb6c1, transparent),
+                radial-gradient(2px 2px at 90px 40px, #ffd1dc, transparent),
+                radial-gradient(3px 3px at 130px 80px, #fff0f5, transparent),
+                radial-gradient(2px 2px at 160px 120px, #ffb6c1, transparent);
+            background-size: 200px 200px;
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        /* Efek gradasi berputar */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, #ff6b8a33, #ffb6c133, #dda0dd33, #ff6b8a33);
+            animation: spin 20s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         .hero-content {
             max-width: 850px;
             z-index: 2;
+            position: relative;
         }
-
         .heart {
-            font-size: 65px;
+            font-size: 70px;
             animation: heartbeat 1.6s infinite;
             margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px #ff6b8a88);
         }
-
         @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.15);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
-
         .hero h1 {
             font-size: clamp(45px, 8vw, 90px);
-            letter-spacing: 4px;
-            color: #8f405d;
+            letter-spacing: 6px;
+            color: #fce4ec;
+            text-shadow: 0 0 30px #ff6b8a66, 0 0 60px #ff6b8a33;
             margin-bottom: 20px;
         }
-
         .hero p {
-            font-size: 20px;
-            line-height: 1.7;
-            color: #705861;
+            font-size: 22px;
+            line-height: 1.8;
+            color: #f5d0d9;
             font-style: italic;
+            text-shadow: 0 2px 10px #00000044;
         }
-
         .scroll-button {
             display: inline-block;
             margin-top: 40px;
-            padding: 14px 30px;
+            padding: 16px 36px;
             border-radius: 50px;
-            background: #a84f6d;
+            background: #c95a7a;
             color: white;
             text-decoration: none;
-            transition: 0.3s;
+            transition: 0.4s;
+            box-shadow: 0 0 30px #c95a7a55;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid #ffb6c166;
         }
-
         .scroll-button:hover {
-            transform: translateY(-4px);
-            background: #863c56;
+            transform: translateY(-6px) scale(1.03);
+            background: #e06b8d;
+            box-shadow: 0 0 50px #c95a7a88;
         }
 
         /* Floating hearts */
-
         .floating-heart {
             position: absolute;
-            font-size: 25px;
-            opacity: 0.4;
-            animation: float 8s linear infinite;
+            font-size: 28px;
+            opacity: 0.5;
+            animation: float 10s linear infinite;
+            z-index: 1;
+            filter: drop-shadow(0 0 10px #ff6b8a66);
         }
-
-        .h1 { left: 10%; animation-delay: 1s; }
-        .h2 { left: 30%; animation-delay: 4s; }
-        .h3 { left: 70%; animation-delay: 2s; }
-        .h4 { left: 85%; animation-delay: 5s; }
-
+        .h1 { left: 5%; animation-delay: 0s; }
+        .h2 { left: 20%; animation-delay: 3s; font-size: 35px; }
+        .h3 { left: 50%; animation-delay: 6s; }
+        .h4 { left: 75%; animation-delay: 2s; font-size: 32px; }
+        .h5 { left: 90%; animation-delay: 8s; }
         @keyframes float {
-            from {
-                bottom: -50px;
-                transform: translateX(0);
-            }
-            to {
-                bottom: 110%;
-                transform: translateX(60px);
-            }
+            0% { bottom: -60px; transform: translateX(0) rotate(0deg); opacity: 0.2; }
+            50% { opacity: 0.7; }
+            100% { bottom: 110%; transform: translateX(80px) rotate(720deg); opacity: 0.2; }
         }
 
-        /* =========================
-           COUNTER
-        ========================= */
-
+        /* ===== COUNTER ===== */
         .counter-section {
             text-align: center;
-            padding: 80px 20px;
-            background: white;
+            padding: 90px 20px;
+            background: linear-gradient(180deg, #1a0f14, #2d1a24);
+            color: #fce4ec;
+            border-top: 1px solid #ffb6c133;
+            border-bottom: 1px solid #ffb6c133;
         }
-
         .counter-section h2 {
-            font-size: 35px;
-            color: #8f405d;
-            margin-bottom: 20px;
+            font-size: 38px;
+            color: #f5d0d9;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px #ff6b8a44;
         }
-
+        .counter-section p {
+            color: #d4a0b0;
+            font-size: 18px;
+        }
         .counter {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
-            color: #a84f6d;
+            color: #ff8fab;
             margin-top: 20px;
+            background: #2d1a2444;
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid #ffb6c144;
+            box-shadow: 0 0 40px #ff6b8a22;
         }
 
-        /* =========================
-           GALLERY
-        ========================= */
-
+        /* ===== GALLERY ===== */
         .gallery-section {
-            padding: 80px 7%;
+            padding: 80px 5%;
+            background: linear-gradient(180deg, #0d080b, #1a0f14, #0d080b);
         }
-
         .section-title {
             text-align: center;
             margin-bottom: 50px;
         }
-
         .section-title h2 {
-            font-size: 42px;
-            color: #8f405d;
-            margin-bottom: 10px;
+            font-size: 44px;
+            color: #f5d0d9;
+            text-shadow: 0 0 30px #ff6b8a44;
+            letter-spacing: 3px;
         }
-
         .section-title p {
-            color: #806a72;
+            color: #b88a98;
+            font-size: 18px;
+            font-style: italic;
         }
 
+        /* Grid: 4 kolom */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 28px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: auto;
         }
 
         .photo-card {
-            background: white;
-            border-radius: 18px;
+            background: #1f1219;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(120, 50, 80, 0.12);
-            transition: 0.35s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            transition: 0.4s ease;
             cursor: pointer;
+            border: 1px solid #ffb6c122;
+            position: relative;
         }
-
+        .photo-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: conic-gradient(from 0deg, #ff6b8a88, #dda0dd88, #ff6b8a88);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .photo-card:hover::before {
+            opacity: 1;
+        }
         .photo-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 40px rgba(120, 50, 80, 0.20);
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(255, 107, 138, 0.25);
+            border-color: #ff6b8a66;
         }
 
         .photo {
             width: 100%;
-            height: 320px;
+            height: 300px;
             object-fit: cover;
             display: block;
+            transition: 0.5s;
+        }
+        .photo-card:hover .photo {
+            transform: scale(1.03);
         }
 
         .photo-info {
-            padding: 22px;
+            padding: 20px 22px 24px;
+            background: #1a0f14;
         }
-
         .photo-info h3 {
-            color: #8f405d;
-            font-size: 23px;
-            margin-bottom: 8px;
+            color: #f5d0d9;
+            font-size: 20px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
         }
-
         .date {
-            color: #b16a82;
-            font-size: 14px;
-            margin-bottom: 12px;
+            color: #b88a98;
+            font-size: 13px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
         }
-
         .photo-info p {
-            color: #716067;
+            color: #b08a96;
             line-height: 1.6;
+            font-size: 15px;
         }
 
-        /* =========================
-           LETTER
-        ========================= */
-
+        /* ===== LETTER ===== */
         .letter-section {
             padding: 100px 20px;
-            background: #fff0f4;
+            background: linear-gradient(180deg, #0d080b, #1a0f14, #0d080b);
             text-align: center;
+            border-top: 1px solid #ffb6c133;
+            border-bottom: 1px solid #ffb6c133;
         }
-
         .letter {
             max-width: 750px;
             margin: auto;
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(120, 50, 80, 0.12);
+            background: #1f1219;
+            padding: 50px 55px;
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
             text-align: left;
+            border: 1px solid #ffb6c122;
+            backdrop-filter: blur(10px);
         }
-
         .letter h2 {
             text-align: center;
-            color: #8f405d;
+            color: #f5d0d9;
             margin-bottom: 30px;
-            font-size: 35px;
+            font-size: 36px;
+            text-shadow: 0 0 30px #ff6b8a44;
         }
-
         .letter p {
-            line-height: 1.9;
+            line-height: 2;
             margin-bottom: 18px;
-            color: #62545a;
+            color: #d4b0bc;
+            font-size: 17px;
         }
-
         .signature {
             text-align: right;
-            color: #a84f6d;
-            font-size: 20px;
+            color: #ff8fab;
+            font-size: 22px;
             margin-top: 30px;
+            font-style: italic;
+            text-shadow: 0 0 20px #ff6b8a44;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
-
+        /* ===== FOOTER ===== */
         footer {
-            padding: 35px 20px;
+            padding: 40px 20px;
             text-align: center;
-            background: #8f405d;
-            color: white;
+            background: #0b080a;
+            color: #a87a86;
+            border-top: 1px solid #ffb6c122;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+        footer p {
+            opacity: 0.7;
         }
 
-        /* =========================
-           MODAL
-        ========================= */
-
+        /* ===== MODAL ===== */
         .modal {
             display: none;
             position: fixed;
             z-index: 9999;
             inset: 0;
-            background: rgba(15, 10, 12, 0.94);
+            background: rgba(5, 3, 4, 0.96);
             justify-content: center;
             align-items: center;
             padding: 30px;
+            backdrop-filter: blur(10px);
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal img {
             max-width: 90%;
             max-height: 85vh;
-            border-radius: 10px;
+            border-radius: 14px;
             object-fit: contain;
+            box-shadow: 0 0 60px #ff6b8a33;
         }
-
         .close {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 45px;
-            color: white;
+            top: 25px;
+            right: 35px;
+            font-size: 50px;
+            color: #f5d0d9;
             cursor: pointer;
+            transition: 0.3s;
+            text-shadow: 0 0 20px #ff6b8a44;
         }
-
-        .prev,
-        .next {
+        .close:hover {
+            transform: rotate(90deg);
+            color: #ff8fab;
+        }
+        .prev, .next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             border: none;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            font-size: 40px;
-            width: 55px;
-            height: 70px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #f5d0d9;
+            font-size: 42px;
+            width: 60px;
+            height: 80px;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 14px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #ffb6c133;
+            transition: 0.3s;
+        }
+        .prev { left: 25px; }
+        .next { right: 25px; }
+        .prev:hover, .next:hover {
+            background: rgba(255, 107, 138, 0.2);
+            border-color: #ff6b8a66;
         }
 
-        .prev {
-            left: 25px;
+        /* ===== MOBILE ===== */
+        @media (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
-
-        .next {
-            right: 25px;
-        }
-
-        .prev:hover,
-        .next:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
         @media (max-width: 600px) {
-
-            .hero h1 {
-                letter-spacing: 1px;
+            .gallery {
+                grid-template-columns: 1fr;
             }
-
-            .hero p {
-                font-size: 17px;
-            }
-
-            .gallery-section {
-                padding: 60px 20px;
-            }
-
-            .photo {
-                height: 300px;
-            }
-
-            .letter {
-                padding: 30px 25px;
-            }
-
-            .prev,
-            .next {
+            .hero h1 { letter-spacing: 2px; }
+            .hero p { font-size: 17px; }
+            .gallery-section { padding: 50px 16px; }
+            .photo { height: 280px; }
+            .letter { padding: 30px 20px; }
+            .prev, .next {
                 width: 45px;
                 height: 55px;
-                font-size: 30px;
+                font-size: 28px;
             }
-
-            .prev {
-                left: 10px;
-            }
-
-            .next {
-                right: 10px;
-            }
+            .prev { left: 8px; }
+            .next { right: 8px; }
+            .counter { font-size: 22px; padding: 12px 24px; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- =========================
-         HERO
-    ========================= -->
-
+    <!-- ===== HERO ===== -->
     <section class="hero">
-
+        <div class="stars"></div>
         <div class="floating-heart h1">❤️</div>
         <div class="floating-heart h2">💕</div>
         <div class="floating-heart h3">💗</div>
-        <div class="floating-heart h4">❤️</div>
-
+        <div class="floating-heart h4">✨</div>
+        <div class="floating-heart h5">🌸</div>
         <div class="hero-content">
-
             <div class="heart">❤️</div>
-
             <h1>OUR MEMORIES</h1>
-
             <p>
                 "Some moments become memories.<br>
                 Some memories become forever."
             </p>
-
-            <a href="#gallery" class="scroll-button">
-                Lihat Kenangan ↓
-            </a>
-
+            <a href="#gallery" class="scroll-button">✨ Lihat Kenangan ↓</a>
         </div>
-
     </section>
 
-
-    <!-- =========================
-         COUNTER
-    ========================= -->
-
+    <!-- ===== COUNTER ===== -->
     <section class="counter-section">
-
-        <h2>❤️ Our Journey</h2>
-
-        <p>
-            Sudah berapa lama perjalanan kita?
-        </p>
-
-        <div class="counter" id="counter">
-            Menghitung...
-        </div>
-
+        <h2>💖 Our Journey</h2>
+        <p>Sudah berapa lama perjalanan kita?</p>
+        <div class="counter" id="counter">Menghitung...</div>
     </section>
 
-
-    <!-- =========================
-         GALLERY
-    ========================= -->
-
+    <!-- ===== GALLERY ===== -->
     <section class="gallery-section" id="gallery">
-
         <div class="section-title">
-
             <h2>📸 Our Memories</h2>
-
-            <p>
-                Kumpulan momen yang tidak ingin kita lupakan.
-            </p>
-
+            <p>Kumpulan momen yang tidak ingin kita lupakan.</p>
         </div>
-
-
-        <div class="gallery">
-
-
-            <!-- FOTO 1 -->
-
-            <div class="photo-card"
-                 onclick="openPhoto(0)">
-
-                <img
-                    class="photo"
-                    src="https://github.com/ocipala/ND-OurMemories/raw/main/images/wallpaper.jpg"
-                    alt="Our Memory">
-
-                <div class="photo-info">
-
-                    <h3>Awal dari semuanya ❤️</h3>
-
-                    <div class="date">
-                        Februari 2026
-                    </div>
-
-                    <p>
-                        Setiap perjalanan selalu dimulai
-                        dari satu langkah kecil.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- FOTO 2 -->
-
-            <div class="photo-card"
-                 onclick="openPhoto(1)">
-
-                <img
-                    class="photo"
-                    src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85"
-                    alt="Our Memory">
-
-                <div class="photo-info">
-
-                    <h3>Senyum yang sederhana 💕</h3>
-
-                    <div class="date">
-                        Maret 2026
-                    </div>
-
-                    <p>
-                        Tidak perlu sesuatu yang besar.
-                        Bersama saja sudah cukup.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- FOTO 3 -->
-
-            <div class="photo-card"
-                 onclick="openPhoto(2)">
-
-                <img
-                    class="photo"
-                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85"
-                    alt="Our Memory">
-
-                <div class="photo-info">
-
-                    <h3>Petualangan kecil 🌿</h3>
-
-                    <div class="date">
-                        April 2026
-                    </div>
-
-                    <p>
-                        Tempat boleh berubah,
-                        tapi kenangannya tetap tinggal.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- FOTO 4 -->
-
-            <div class="photo-card"
-                 onclick="openPhoto(3)">
-
-                <img
-                    class="photo"
-                    src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85"
-                    alt="Our Memory">
-
-                <div class="photo-info">
-
-                    <h3>Waktu bersama 🌹</h3>
-
-                    <div class="date">
-                        Mei 2026
-                    </div>
-
-                    <p>
-                        Waktu terasa cepat ketika
-                        dihabiskan bersama orang yang tepat.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- FOTO 5 -->
-
-            <div class="photo-card"
-                 onclick="openPhoto(4)">
-
-                <img
-                    class="photo"
-                    src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85"
-                    alt="Our Memory">
-
-                <div class="photo-info">
-
-                    <h3>Kenangan yang indah ✨</h3>
-
-                    <div class="date">
-                        Juni 2026
-                    </div>
-
-                    <p>
-                        Ada momen yang sederhana,
-                        tetapi selalu ingin diingat.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- FOTO 6 -->
-
-            <div class="photo-card"
-                 onclick="openPhoto(5)">
-
-                <img
-                    class="photo"
-                    src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85"
-                    alt="Our Memory">
-
-                <div class="photo-info">
-
-                    <h3>Forever memories ❤️</h3>
-
-                    <div class="date">
-                        Juli 2026
-                    </div>
-
-                    <p>
-                        Beberapa kenangan tidak pernah
-                        benar-benar berakhir.
-                    </p>
-
-                </div>
-
-            </div>
-
+        <div class="gallery" id="galleryGrid">
+            <!-- Foto akan diisi oleh JavaScript -->
         </div>
-
     </section>
 
-
-    <!-- =========================
-         LETTER
-    ========================= -->
-
+    <!-- ===== LETTER ===== -->
     <section class="letter-section">
-
         <div class="letter">
-
             <h2>💌 Untuk Kamu</h2>
-
-            <p>
-                Mungkin suatu hari nanti kita akan lupa
-                detail-detail kecil dari perjalanan ini.
-            </p>
-
-            <p>
-                Tapi aku ingin menyimpan semua momen
-                yang pernah membuat kita tersenyum,
-                tertawa, dan merasa bahagia.
-            </p>
-
-            <p>
-                Website kecil ini dibuat sebagai tempat
-                untuk menyimpan semua kenangan itu.
-            </p>
-
-            <p>
-                Karena pada akhirnya, yang paling berharga
-                bukanlah seberapa banyak waktu yang kita
-                miliki, tetapi bagaimana kita menghabiskannya.
-            </p>
-
-            <div class="signature">
-                With love ❤️
-            </div>
-
+            <p>Mungkin suatu hari nanti kita akan lupa detail-detail kecil dari perjalanan ini.</p>
+            <p>Tapi aku ingin menyimpan semua momen yang pernah membuat kita tersenyum, tertawa, dan merasa bahagia.</p>
+            <p>Website kecil ini dibuat sebagai tempat untuk menyimpan semua kenangan itu.</p>
+            <p>Karena pada akhirnya, yang paling berharga bukanlah seberapa banyak waktu yang kita miliki, tetapi bagaimana kita menghabiskannya.</p>
+            <div class="signature">With love ❤️</div>
         </div>
-
     </section>
 
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
+    <!-- ===== FOOTER ===== -->
     <footer>
-
-        <p>
-            Made with ❤️ and memories
-        </p>
-
+        <p>Made with ❤️ and memories</p>
     </footer>
 
-
-    <!-- =========================
-         PHOTO MODAL
-    ========================= -->
-
+    <!-- ===== MODAL ===== -->
     <div class="modal" id="photoModal">
-
-        <span class="close" onclick="closePhoto()">
-            &times;
-        </span>
-
-        <button class="prev" onclick="changePhoto(-1)">
-            ‹
-        </button>
-
+        <span class="close" onclick="closePhoto()">&times;</span>
+        <button class="prev" onclick="changePhoto(-1)">‹</button>
         <img id="modalImage" src="" alt="Memory">
-
-        <button class="next" onclick="changePhoto(1)">
-            ›
-        </button>
-
+        <button class="next" onclick="changePhoto(1)">›</button>
     </div>
 
-
     <script>
-
-        /* =========================
-           LOVE COUNTER
-        ========================= */
-
-        /*
-           GANTI TANGGAL DI BAWAH
-           dengan tanggal mulai hubungan kalian.
-
-           Format:
-           TAHUN, BULAN-1, TANGGAL
-        */
-
-        const startDate = new Date(2026, 4, 1);
-
-
-        function updateCounter() {
-
-            const now = new Date();
-
-            const difference =
-                now - startDate;
-
-            const days =
-                Math.floor(
-                    difference /
-                    (1000 * 60 * 60 * 24)
-                );
-
-            document.getElementById("counter")
-                .innerText =
-                days + " hari penuh dengan cerita ❤️";
-
-        }
-
-        updateCounter();
-
-
-        /* =========================
-           PHOTO GALLERY
-        ========================= */
-
-        const photos = [
-
-            "https://github.com/ocipala/ND-OurMemories/raw/main/images/wallpaper.jpg",
-
-            "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1500&q=90",
-
-            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=90",
-
-            "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1500&q=90",
-
-            "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1500&q=90",
-
-            "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1500&q=90"
-
+        // ===== DATA FOTO (12 SLOT) =====
+        const photoData = [
+            {
+                src: "https://github.com/ocipala/ND-OurMemories/raw/main/images/wallpaper.jpg",
+                title: "Awal dari semuanya ❤️",
+                date: "Februari 2026",
+                desc: "Setiap perjalanan selalu dimulai dari satu langkah kecil."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
+                title: "Senyum yang sederhana 💕",
+                date: "Maret 2026",
+                desc: "Tidak perlu sesuatu yang besar. Bersama saja sudah cukup."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85",
+                title: "Petualangan kecil 🌿",
+                date: "April 2026",
+                desc: "Tempat boleh berubah, tapi kenangannya tetap tinggal."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85",
+                title: "Waktu bersama 🌹",
+                date: "Mei 2026",
+                desc: "Waktu terasa cepat ketika dihabiskan bersama orang yang tepat."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85",
+                title: "Kenangan yang indah ✨",
+                date: "Juni 2026",
+                desc: "Ada momen yang sederhana, tetapi selalu ingin diingat."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85",
+                title: "Forever memories ❤️",
+                date: "Juli 2026",
+                desc: "Beberapa kenangan tidak pernah benar-benar berakhir."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1000&q=85",
+                title: "Cahaya cinta ✨",
+                date: "Agustus 2026",
+                desc: "Kamu adalah cahaya dalam setiap hariku."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",
+                title: "Pelukan hangat 🤗",
+                date: "September 2026",
+                desc: "Tidak ada yang lebih menenangkan selain pelukanmu."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85",
+                title: "Petualangan baru 🌊",
+                date: "Oktober 2026",
+                desc: "Setiap hari bersamamu adalah petualangan baru."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85",
+                title: "Cinta sejati 💖",
+                date: "November 2026",
+                desc: "Cinta sejati adalah ketika kita tumbuh bersama."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
+                title: "Terima kasih 🙏",
+                date: "Desember 2026",
+                desc: "Terima kasih telah menjadi bagian dari ceritaku."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85",
+                title: "Selamanya ❤️",
+                date: "Januari 2027",
+                desc: "Untuk selamanya, aku akan selalu bersamamu."
+            }
         ];
 
+        // ===== RENDER GALLERY =====
+        const galleryGrid = document.getElementById('galleryGrid');
+        photoData.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            card.onclick = () => openPhoto(index);
+            card.innerHTML = `
+                <img class="photo" src="${item.src}" alt="${item.title}" loading="lazy">
+                <div class="photo-info">
+                    <h3>${item.title}</h3>
+                    <div class="date">${item.date}</div>
+                    <p>${item.desc}</p>
+                </div>
+            `;
+            galleryGrid.appendChild(card);
+        });
 
+        // ===== LOVE COUNTER =====
+        const startDate = new Date(2026, 4, 1);
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("counter").innerText = days + " hari penuh dengan cerita ❤️";
+        }
+        updateCounter();
+
+        // ===== PHOTO MODAL =====
+        const photos = photoData.map(item => item.src);
         let currentPhoto = 0;
 
-
         function openPhoto(index) {
-
             currentPhoto = index;
-
-            document.getElementById("modalImage")
-                .src = photos[currentPhoto];
-
-            document.getElementById("photoModal")
-                .classList.add("active");
-
+            document.getElementById("modalImage").src = photos[currentPhoto];
+            document.getElementById("photoModal").classList.add("active");
         }
-
-
         function closePhoto() {
-
-            document.getElementById("photoModal")
-                .classList.remove("active");
-
+            document.getElementById("photoModal").classList.remove("active");
         }
-
-
         function changePhoto(direction) {
-
-            currentPhoto += direction;
-
-            if (currentPhoto < 0) {
-                currentPhoto = photos.length - 1;
-            }
-
-            if (currentPhoto >= photos.length) {
-                currentPhoto = 0;
-            }
-
-            document.getElementById("modalImage")
-                .src = photos[currentPhoto];
-
+            currentPhoto = (currentPhoto + direction + photos.length) % photos.length;
+            document.getElementById("modalImage").src = photos[currentPhoto];
         }
 
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") closePhoto();
+            if (e.key === "ArrowLeft") changePhoto(-1);
+            if (e.key === "ArrowRight") changePhoto(1);
+        });
+        document.getElementById("photoModal").addEventListener("click", function(e) {
+            if (e.target === this) closePhoto();
+        });
 
-        /* Keyboard navigation */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-                    closePhoto();
-                }
-
-                if (event.key === "ArrowLeft") {
-                    changePhoto(-1);
-                }
-
-                if (event.key === "ArrowRight") {
-                    changePhoto(1);
-                }
-
-            }
-        );
-
-
-        /* Klik area gelap untuk menutup */
-
-        document.getElementById("photoModal")
-            .addEventListener(
-                "click",
-                function(event) {
-
-                    if (event.target === this) {
-                        closePhoto();
-                    }
-
-                }
-            );
-
-        // =========================
-        //    BACKGROUND MUSIC
-        // =========================
-
-        // Buat tombol musik di pojok kanan bawah
+        // ===== BACKGROUND MUSIC =====
         const musicContainer = document.createElement('div');
         musicContainer.id = 'music-container';
-        musicContainer.style.cssText = 'position: fixed; bottom: 25px; right: 25px; z-index: 9998; background: rgba(255, 248, 250, 0.92); backdrop-filter: blur(8px); border-radius: 50px; padding: 10px 20px 10px 16px; box-shadow: 0 6px 30px rgba(120, 50, 80, 0.25); display: flex; align-items: center; gap: 12px; font-family: Georgia, serif; font-size: 14px; color: #8f405d; border: 1px solid rgba(168, 79, 109, 0.15);';
+        musicContainer.style.cssText = 'position: fixed; bottom: 25px; right: 25px; z-index: 9998; background: rgba(20, 12, 16, 0.85); backdrop-filter: blur(12px); border-radius: 50px; padding: 10px 20px 10px 16px; box-shadow: 0 6px 30px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 12px; font-family: Georgia, serif; font-size: 14px; color: #f5d0d9; border: 1px solid #ffb6c133;';
         musicContainer.innerHTML = `
-            <button id="musicToggle" style="background: #a84f6d; color: white; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 18px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(168, 79, 109, 0.3);">🔊</button>
+            <button id="musicToggle" style="background: #c95a7a; color: white; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 18px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(201, 90, 122, 0.3);">🔊</button>
             <div style="display: flex; flex-direction: column; line-height: 1.3;">
-                <span style="font-size: 13px; font-weight: bold; color: #8f405d;">🎵 1000X</span>
-                <span style="font-size: 10px; color: #a87a86;">Ghea Indrawari</span>
+                <span style="font-size: 13px; font-weight: bold; color: #f5d0d9;">🎵 1000X</span>
+                <span style="font-size: 10px; color: #b88a98;">Ghea Indrawari</span>
             </div>
         `;
         document.body.appendChild(musicContainer);
 
-        // Buat iframe YouTube (tersembunyi)
         const musicIframe = document.createElement('iframe');
         musicIframe.id = 'youtubeMusic';
         musicIframe.width = 0;
@@ -862,32 +620,24 @@
 
         const musicBtn = document.getElementById('musicToggle');
         let musicPlaying = true;
-
         function tryPlay() {
             musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1';
         }
-
-        // Coba putar otomatis
         tryPlay();
-
-        // Tombol play/pause
         musicBtn.addEventListener('click', function() {
             if (musicPlaying) {
                 musicIframe.src = '';
                 musicBtn.textContent = '🔇';
-                musicBtn.style.background = '#8f8f8f';
+                musicBtn.style.background = '#555';
                 musicPlaying = false;
             } else {
                 tryPlay();
                 musicBtn.textContent = '🔊';
-                musicBtn.style.background = '#a84f6d';
+                musicBtn.style.background = '#c95a7a';
                 musicPlaying = true;
             }
         });
-
         console.log('🎵 Background music: 1000X - Ghea Indrawari');
-
     </script>
-
 </body>
 </html>
