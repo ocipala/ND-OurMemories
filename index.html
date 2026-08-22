@@ -252,44 +252,6 @@
             100% { bottom: 110%; transform: translateX(100px) rotate(720deg); opacity: 0.1; }
         }
 
-        /* ===== COUNTER ===== */
-        .counter-section {
-            text-align: center;
-            padding: 100px 20px;
-            background: rgba(26, 15, 20, 0.6);
-            backdrop-filter: blur(20px);
-            color: #fce4ec;
-            border-top: 1px solid rgba(255, 182, 193, 0.08);
-            border-bottom: 1px solid rgba(255, 182, 193, 0.08);
-            position: relative;
-        }
-        .counter-section h2 {
-            font-size: 40px;
-            color: #f5d0d9;
-            margin-bottom: 15px;
-            text-shadow: 0 0 40px #ff6b8a44;
-            letter-spacing: 2px;
-        }
-        .counter-section p {
-            color: #d4a0b0;
-            font-size: 18px;
-            letter-spacing: 1px;
-        }
-        .counter {
-            font-size: 34px;
-            font-weight: bold;
-            color: #ff8fab;
-            margin-top: 25px;
-            background: rgba(45, 26, 36, 0.5);
-            display: inline-block;
-            padding: 18px 50px;
-            border-radius: 60px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 182, 193, 0.12);
-            box-shadow: 0 0 60px #ff6b8a22, inset 0 1px 0 rgba(255,255,255,0.05);
-            letter-spacing: 1px;
-        }
-
         /* ===== GALLERY ===== */
         .gallery-section {
             padding: 100px 5%;
@@ -571,9 +533,6 @@
             }
             .prev { left: 8px; }
             .next { right: 8px; }
-            .counter { font-size: 22px; padding: 14px 28px; }
-            .counter-section { padding: 60px 16px; }
-            .counter-section h2 { font-size: 30px; }
             #splash .big-heart { font-size: 50px; }
             #splash .splash-text { font-size: 18px; }
         }
@@ -613,13 +572,6 @@
             </p>
             <a href="#gallery" class="scroll-button">✨ Lihat Kenangan ↓</a>
         </div>
-    </section>
-
-    <!-- ===== COUNTER ===== -->
-    <section class="counter-section">
-        <h2>💖 Our Journey</h2>
-        <p>Sudah berapa lama perjalanan kita?</p>
-        <div class="counter" id="counter">Menghitung...</div>
     </section>
 
     <!-- ===== GALLERY ===== -->
@@ -733,27 +685,6 @@
             `;
             galleryGrid.appendChild(card);
         });
-
-        // ===== LOVE COUNTER (DETAIL) =====
-        const startDate = new Date(2026, 4, 1);
-        function updateCounter() {
-            const now = new Date();
-            let diff = now - startDate;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const months = Math.floor(days / 30.44);
-            const years = Math.floor(months / 12);
-            const remainingMonths = months % 12;
-            const remainingDays = Math.floor(days % 30.44);
-
-            let displayText = '';
-            if (years > 0) displayText += years + ' tahun ';
-            if (remainingMonths > 0 || years > 0) displayText += remainingMonths + ' bulan ';
-            displayText += remainingDays + ' hari';
-
-            document.getElementById("counter").innerHTML = displayText + ' ❤️';
-        }
-        updateCounter();
 
         // ===== PHOTO MODAL =====
         const photos = photoData.map(item => item.src);
