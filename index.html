@@ -22,6 +22,64 @@
             overflow-x: hidden;
         }
 
+        /* ===== SPLASH SCREEN ===== */
+        #splash {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #0b0a0c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+        #splash.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #splash .big-heart {
+            font-size: 80px;
+            animation: splashPulse 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 60px #ff6b8a66);
+        }
+        @keyframes splashPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        #splash .splash-text {
+            margin-top: 24px;
+            font-size: 24px;
+            color: #f5d0d9;
+            letter-spacing: 4px;
+            opacity: 0.7;
+            animation: fadeText 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes fadeText {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        #splash .loading-bar {
+            margin-top: 30px;
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #splash .loading-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff6b8a, #dda0dd);
+            border-radius: 10px;
+            animation: loadFill 2s ease-in-out forwards;
+        }
+        @keyframes loadFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
         /* ===== ANIMATED BACKGROUND ===== */
         .bg-gradient {
             position: fixed;
@@ -37,12 +95,25 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ===== PARTICLE BACKGROUND ===== */
-        #particles-canvas {
+        /* ===== FLOATING HEARTS (Background) ===== */
+        .bg-hearts-container {
             position: fixed;
             inset: 0;
             z-index: -1;
             pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.15;
+            animation: bgHeartFloat 18s linear infinite;
+        }
+        @keyframes bgHeartFloat {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0.05; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-20vh) rotate(720deg) scale(1.2); opacity: 0.05; }
         }
 
         /* ===== GLOW ORBS ===== */
@@ -52,7 +123,7 @@
             filter: blur(80px);
             pointer-events: none;
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.4;
             animation: orbFloat 12s ease-in-out infinite alternate;
         }
         .glow-orb-1 {
@@ -97,14 +168,6 @@
             overflow: hidden;
             background: transparent;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 30% 20%, #ff6b8a15, transparent 60%),
-                        radial-gradient(ellipse at 70% 80%, #dda0dd15, transparent 60%);
-            pointer-events: none;
-        }
         .hero-content {
             max-width: 850px;
             z-index: 2;
@@ -115,7 +178,7 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .heart {
+        .heart-main {
             font-size: 72px;
             animation: heartbeat 1.6s infinite;
             margin-bottom: 15px;
@@ -170,7 +233,6 @@
             box-shadow: 0 0 60px #c95a7a88, 0 10px 40px rgba(0,0,0,0.3);
         }
 
-        /* Floating hearts */
         .floating-heart {
             position: absolute;
             font-size: 30px;
@@ -200,13 +262,6 @@
             border-top: 1px solid rgba(255, 182, 193, 0.08);
             border-bottom: 1px solid rgba(255, 182, 193, 0.08);
             position: relative;
-        }
-        .counter-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, #ff6b8a08, transparent 70%);
-            pointer-events: none;
         }
         .counter-section h2 {
             font-size: 40px;
@@ -240,14 +295,6 @@
             padding: 100px 5%;
             background: transparent;
             position: relative;
-        }
-        .gallery-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 30% 70%, #ff6b8a06, transparent 50%),
-                        radial-gradient(ellipse at 70% 30%, #dda0dd06, transparent 50%);
-            pointer-events: none;
         }
         .section-title {
             text-align: center;
@@ -287,6 +334,8 @@
             cursor: pointer;
             border: 1px solid rgba(255, 182, 193, 0.08);
             position: relative;
+            transform-style: preserve-3d;
+            perspective: 800px;
         }
         .photo-card::before {
             content: '';
@@ -354,13 +403,6 @@
             border-bottom: 1px solid rgba(255, 182, 193, 0.06);
             position: relative;
         }
-        .letter-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, #ff6b8a06, transparent 60%);
-            pointer-events: none;
-        }
         .letter {
             max-width: 750px;
             margin: auto;
@@ -373,13 +415,6 @@
             border: 1px solid rgba(255, 182, 193, 0.06);
             position: relative;
             overflow: hidden;
-        }
-        .letter::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 30% 20%, #ff6b8a08, transparent 60%);
-            pointer-events: none;
         }
         .letter h2 {
             text-align: center;
@@ -418,13 +453,6 @@
             border-top: 1px solid rgba(255, 182, 193, 0.06);
             font-size: 15px;
             letter-spacing: 1px;
-        }
-        footer p {
-            opacity: 0.6;
-            transition: 0.3s;
-        }
-        footer p:hover {
-            opacity: 1;
         }
 
         /* ===== MODAL ===== */
@@ -492,6 +520,37 @@
             transform: translateY(-50%) scale(1.05);
         }
 
+        /* ===== MUSIC VISUALIZER ===== */
+        .music-visualizer {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 20px;
+            margin-right: 4px;
+        }
+        .music-visualizer .bar {
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to top, #ff6b8a, #dda0dd);
+            border-radius: 10px;
+            animation: visualizerBeat 0.8s ease-in-out infinite alternate;
+        }
+        .music-visualizer .bar:nth-child(1) { animation-delay: 0s; height: 30%; }
+        .music-visualizer .bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+        .music-visualizer .bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+        .music-visualizer .bar:nth-child(4) { animation-delay: 0.3s; height: 50%; }
+        .music-visualizer .bar:nth-child(5) { animation-delay: 0.4s; height: 90%; }
+        .music-visualizer .bar:nth-child(6) { animation-delay: 0.5s; height: 40%; }
+        .music-visualizer .bar:nth-child(7) { animation-delay: 0.6s; height: 70%; }
+        .music-visualizer .bar:nth-child(8) { animation-delay: 0.7s; height: 55%; }
+        .music-visualizer .bar:nth-child(9) { animation-delay: 0.8s; height: 85%; }
+        .music-visualizer .bar:nth-child(10) { animation-delay: 0.9s; height: 45%; }
+
+        @keyframes visualizerBeat {
+            0% { height: 20%; }
+            100% { height: 100%; }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .gallery { grid-template-columns: repeat(2, 1fr); }
@@ -515,17 +574,28 @@
             .counter { font-size: 22px; padding: 14px 28px; }
             .counter-section { padding: 60px 16px; }
             .counter-section h2 { font-size: 30px; }
+            #splash .big-heart { font-size: 50px; }
+            #splash .splash-text { font-size: 18px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splash">
+        <div class="big-heart">❤️</div>
+        <div class="splash-text">OUR MEMORIES</div>
+        <div class="loading-bar"><div class="fill"></div></div>
+    </div>
 
     <!-- ===== ANIMATED BACKGROUND ===== -->
     <div class="bg-gradient"></div>
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
     <div class="glow-orb glow-orb-3"></div>
-    <canvas id="particles-canvas"></canvas>
+
+    <!-- ===== BACKGROUND FLOATING HEARTS ===== -->
+    <div class="bg-hearts-container" id="bgHearts"></div>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
@@ -535,7 +605,7 @@
         <div class="floating-heart h4">✨</div>
         <div class="floating-heart h5">🌸</div>
         <div class="hero-content">
-            <div class="heart">❤️</div>
+            <div class="heart-main">❤️</div>
             <h1><span>OUR MEMORIES</span></h1>
             <p>
                 "Some moments become memories.<br>
@@ -587,78 +657,44 @@
     </div>
 
     <script>
-        // ===== PARTICLES =====
+        // ===== SPLASH SCREEN =====
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('splash').classList.add('hide');
+            }, 2500);
+        });
+
+        // ===== BACKGROUND FLOATING HEARTS =====
         (function() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            let w, h;
-            const particles = [];
-            const count = 80;
-
-            function resize() {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
+            const container = document.getElementById('bgHearts');
+            const emojis = ['❤️', '💕', '💗', '💖', '♥️'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 20 + 12) + 'px';
+                heart.style.animationDuration = (Math.random() * 12 + 12) + 's';
+                heart.style.animationDelay = (Math.random() * 15) + 's';
+                container.appendChild(heart);
             }
-            window.addEventListener('resize', resize);
-            resize();
+        })();
 
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * w;
-                    this.y = Math.random() * h;
-                    this.size = Math.random() * 3 + 1;
-                    this.speedX = (Math.random() - 0.5) * 0.4;
-                    this.speedY = (Math.random() - 0.5) * 0.4;
-                    this.opacity = Math.random() * 0.5 + 0.1;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.x < 0 || this.x > w) this.speedX *= -1;
-                    if (this.y < 0 || this.y > h) this.speedY *= -1;
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
-                    ctx.fill();
-                    // Glow
-                    ctx.shadowColor = 'rgba(255, 107, 138, 0.2)';
-                    ctx.shadowBlur = 10;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
-            }
-
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, w, h);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
+        // ===== 3D TILT EFFECT =====
+        (function() {
+            const cards = document.querySelectorAll('.photo-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    this.style.transform =
+                        `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-8px) scale(1.01)`;
                 });
-                // Draw connecting lines
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 150) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = `rgba(255, 182, 193, ${0.06 * (1 - dist / 150)})`;
-                            ctx.lineWidth = 0.8;
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)';
+                });
+            });
         })();
 
         // ===== DATA FOTO (16 SLOT) =====
@@ -698,13 +734,26 @@
             galleryGrid.appendChild(card);
         });
 
-        // ===== LOVE COUNTER =====
-        const startDate = new Date(2026, 4, 1);
+        // ===== LOVE COUNTER (DETAIL) =====
+        // Tanggal mulai: 10 Agustus 2026
+        const startDate = new Date(2026, 7, 10); // bulan 7 = Agustus
+
         function updateCounter() {
             const now = new Date();
-            const diff = now - startDate;
+            let diff = now - startDate;
+
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("counter").innerText = days + " hari penuh dengan cerita ❤️";
+            const months = Math.floor(days / 30.44);
+            const years = Math.floor(months / 12);
+            const remainingMonths = Math.floor(months % 12);
+            const remainingDays = Math.floor(days % 30.44);
+
+            let displayText = '';
+            if (years > 0) displayText += years + ' tahun ';
+            if (remainingMonths > 0 || years > 0) displayText += remainingMonths + ' bulan ';
+            displayText += remainingDays + ' hari';
+
+            document.getElementById("counter").innerHTML = displayText + ' ❤️';
         }
         updateCounter();
 
@@ -734,11 +783,16 @@
             if (e.target === this) closePhoto();
         });
 
-        // ===== BACKGROUND MUSIC =====
+        // ===== BACKGROUND MUSIC + VISUALIZER =====
         const musicContainer = document.createElement('div');
-        musicContainer.id = 'music-container';
         musicContainer.style.cssText = 'position: fixed; bottom: 25px; right: 25px; z-index: 9998; background: rgba(20, 12, 16, 0.7); backdrop-filter: blur(20px); border-radius: 60px; padding: 10px 22px 10px 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05); display: flex; align-items: center; gap: 14px; font-family: Georgia, serif; font-size: 14px; color: #f5d0d9; border: 1px solid rgba(255, 182, 193, 0.08);';
         musicContainer.innerHTML = `
+            <div class="music-visualizer" id="visualizer">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div>
+            </div>
             <button id="musicToggle" style="background: linear-gradient(135deg, #c95a7a, #a84f6d); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 18px; cursor: pointer; transition: 0.4s; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(201, 90, 122, 0.2);">🔊</button>
             <div style="display: flex; flex-direction: column; line-height: 1.3;">
                 <span style="font-size: 13px; font-weight: bold; color: #f5d0d9; letter-spacing: 0.5px;">🎵 1000X</span>
@@ -757,36 +811,38 @@
         document.body.appendChild(musicIframe);
 
         const musicBtn = document.getElementById('musicToggle');
+        const visualizer = document.getElementById('visualizer');
         let musicPlaying = true;
+
         function tryPlay() {
             musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1';
         }
         tryPlay();
+
         musicBtn.addEventListener('click', function() {
             if (musicPlaying) {
                 musicIframe.src = '';
                 musicBtn.textContent = '🔇';
                 musicBtn.style.background = '#555';
+                visualizer.style.opacity = '0.2';
                 musicPlaying = false;
             } else {
                 tryPlay();
                 musicBtn.textContent = '🔊';
                 musicBtn.style.background = 'linear-gradient(135deg, #c95a7a, #a84f6d)';
+                visualizer.style.opacity = '1';
                 musicPlaying = true;
             }
         });
 
         // ===== EFEK KURSOR HATI =====
         (function() {
-            let mouseX = 0, mouseY = 0;
             let moveTimeout;
 
             document.addEventListener('mousemove', function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
                 clearTimeout(moveTimeout);
                 moveTimeout = setTimeout(() => {}, 100);
-                createHeart(mouseX, mouseY);
+                createHeart(e.clientX, e.clientY);
             });
 
             function createHeart(x, y) {
