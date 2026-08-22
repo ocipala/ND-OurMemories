@@ -32,7 +32,6 @@
             overflow: hidden;
             background: linear-gradient(145deg, #1a0f14 0%, #2d1a24 30%, #1f0f1a 70%, #0d080b 100%);
         }
-        /* Efek bintang berkilau */
         .stars {
             position: absolute;
             inset: 0;
@@ -51,7 +50,6 @@
             0% { opacity: 0.3; }
             100% { opacity: 1; }
         }
-        /* Efek gradasi berputar */
         .hero::after {
             content: '';
             position: absolute;
@@ -113,7 +111,6 @@
             box-shadow: 0 0 50px #c95a7a88;
         }
 
-        /* Floating hearts */
         .floating-heart {
             position: absolute;
             font-size: 28px;
@@ -187,7 +184,6 @@
             font-style: italic;
         }
 
-        /* Grid: 4 kolom */
         .gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -467,10 +463,13 @@
     </div>
 
     <script>
-        // ===== DATA FOTO (12 SLOT) =====
+        // ===== DATA FOTO (16 SLOT) =====
+        // Foto 1 = contoh dari internet (bisa dipakai di GitHub mana pun)
+        // Foto 2-16 = foto contoh (bisa diganti dengan foto sendiri nanti)
         const photoData = [
+            // BARIS 1
             {
-                src: "https://github.com/ocipala/ND-OurMemories/raw/main/images/wallpaper.jpg",
+                src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",
                 title: "Awal dari semuanya ❤️",
                 date: "Februari 2026",
                 desc: "Setiap perjalanan selalu dimulai dari satu langkah kecil."
@@ -493,6 +492,7 @@
                 date: "Mei 2026",
                 desc: "Waktu terasa cepat ketika dihabiskan bersama orang yang tepat."
             },
+            // BARIS 2
             {
                 src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85",
                 title: "Kenangan yang indah ✨",
@@ -517,6 +517,7 @@
                 date: "September 2026",
                 desc: "Tidak ada yang lebih menenangkan selain pelukanmu."
             },
+            // BARIS 3
             {
                 src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85",
                 title: "Petualangan baru 🌊",
@@ -540,6 +541,31 @@
                 title: "Selamanya ❤️",
                 date: "Januari 2027",
                 desc: "Untuk selamanya, aku akan selalu bersamamu."
+            },
+            // BARIS 4 (TAMBAHAN)
+            {
+                src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85",
+                title: "Bintang-bintang 🌟",
+                date: "Februari 2027",
+                desc: "Di bawah langit yang sama, kita berbagi mimpi."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85",
+                title: "Senja bersama 🌅",
+                date: "Maret 2027",
+                desc: "Senja terasa lebih indah karena ada kamu."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
+                title: "Canda tawa 😄",
+                date: "April 2027",
+                desc: "Tawa kita adalah musik terindah yang pernah ada."
+            },
+            {
+                src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",
+                title: "Cerita kita 📖",
+                date: "Mei 2027",
+                desc: "Setiap hari adalah halaman baru dalam cerita kita."
             }
         ];
 
