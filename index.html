@@ -665,5 +665,53 @@
         });
         console.log('🎵 Background music: 1000X - Ghea Indrawari');
     </script>
+    <!-- ===== EFEK KURSOR HATI ===== -->
+<script>
+(function() {
+    const hearts = [];
+    let mouseX = 0, mouseY = 0;
+    let isMoving = false;
+    let moveTimeout;
+
+    document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        isMoving = true;
+        clearTimeout(moveTimeout);
+        moveTimeout = setTimeout(() => { isMoving = false; }, 100);
+        createHeart(mouseX, mouseY);
+    });
+
+    function createHeart(x, y) {
+        const heart = document.createElement('div');
+        heart.innerHTML = ['❤️', '💕', '💗', '💖', '✨'][Math.floor(Math.random() * 5)];
+        heart.style.cssText = `
+            position: fixed;
+            left: ${x - 10}px;
+            top: ${y - 10}px;
+            font-size: ${Math.random() * 18 + 12}px;
+            pointer-events: none;
+            z-index: 99999;
+            opacity: 1;
+            transition: all 1.2s ease-out;
+            transform: translate(0, 0) scale(1) rotate(0deg);
+            filter: drop-shadow(0 0 6px rgba(255,107,138,0.5));
+        `;
+        document.body.appendChild(heart);
+
+        const xMove = (Math.random() - 0.5) * 120;
+        const yMove = -Math.random() * 150 - 50;
+
+        setTimeout(() => {
+            heart.style.transform = `translate(${xMove}px, ${yMove}px) scale(0.2) rotate(${Math.random() * 360}deg)`;
+            heart.style.opacity = '0';
+        }, 20);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 1500);
+    }
+})();
+</script>
 </body>
 </html>
