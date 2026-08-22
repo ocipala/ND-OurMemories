@@ -17,7 +17,72 @@
         body {
             font-family: Georgia, 'Times New Roman', serif;
             background: #0b0a0c;
-            color: #3b3033;
+            color: #f0e6ea;
+            cursor: default;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(-45deg, #0d080b, #1a0f14, #2d1a24, #1f0f1a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== PARTICLE BACKGROUND ===== */
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== GLOW ORBS ===== */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5;
+            animation: orbFloat 12s ease-in-out infinite alternate;
+        }
+        .glow-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #ff6b8a33;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #dda0dd33;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -4s;
+        }
+        .glow-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: #ffb6c133;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -8s;
+        }
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.2); }
         }
 
         /* ===== HERO ===== */
@@ -30,199 +95,220 @@
             padding: 40px 20px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(145deg, #1a0f14 0%, #2d1a24 30%, #1f0f1a 70%, #0d080b 100%);
+            background: transparent;
         }
-        .stars {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                radial-gradient(2px 2px at 20px 30px, #ffb6c1, transparent),
-                radial-gradient(2px 2px at 40px 70px, #ffd1dc, transparent),
-                radial-gradient(2px 2px at 50px 160px, #ffb6c1, transparent),
-                radial-gradient(2px 2px at 90px 40px, #ffd1dc, transparent),
-                radial-gradient(3px 3px at 130px 80px, #fff0f5, transparent),
-                radial-gradient(2px 2px at 160px 120px, #ffb6c1, transparent);
-            background-size: 200px 200px;
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-        .hero::after {
+        .hero::before {
             content: '';
             position: absolute;
-            inset: -50%;
-            background: conic-gradient(from 0deg, #ff6b8a33, #ffb6c133, #dda0dd33, #ff6b8a33);
-            animation: spin 20s linear infinite;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 20%, #ff6b8a15, transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, #dda0dd15, transparent 60%);
             pointer-events: none;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         .hero-content {
             max-width: 850px;
             z-index: 2;
             position: relative;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .heart {
-            font-size: 70px;
+            font-size: 72px;
             animation: heartbeat 1.6s infinite;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 20px #ff6b8a88);
+            filter: drop-shadow(0 0 40px #ff6b8a88) drop-shadow(0 0 80px #ff6b8a44);
         }
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.15); }
         }
         .hero h1 {
-            font-size: clamp(45px, 8vw, 90px);
-            letter-spacing: 6px;
+            font-size: clamp(48px, 9vw, 96px);
+            letter-spacing: 8px;
             color: #fce4ec;
-            text-shadow: 0 0 30px #ff6b8a66, 0 0 60px #ff6b8a33;
+            text-shadow: 0 0 40px #ff6b8a66, 0 0 80px #ff6b8a33, 0 0 120px #ff6b8a22;
             margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .hero h1 span {
+            display: inline-block;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { text-shadow: 0 0 40px #ff6b8a66, 0 0 80px #ff6b8a33; }
+            50% { text-shadow: 0 0 60px #ff8fab88, 0 0 120px #ff6b8a55, 0 0 180px #ff6b8a33; }
         }
         .hero p {
             font-size: 22px;
             line-height: 1.8;
             color: #f5d0d9;
             font-style: italic;
-            text-shadow: 0 2px 10px #00000044;
+            text-shadow: 0 2px 20px #00000066;
+            letter-spacing: 1px;
         }
         .scroll-button {
             display: inline-block;
-            margin-top: 40px;
-            padding: 16px 36px;
-            border-radius: 50px;
-            background: #c95a7a;
+            margin-top: 45px;
+            padding: 18px 44px;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #c95a7a, #a84f6d);
             color: white;
             text-decoration: none;
-            transition: 0.4s;
-            box-shadow: 0 0 30px #c95a7a55;
+            transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 0 40px #c95a7a55, inset 0 1px 0 rgba(255,255,255,0.15);
             font-weight: bold;
             letter-spacing: 2px;
-            border: 1px solid #ffb6c166;
+            border: 1px solid #ffb6c144;
+            backdrop-filter: blur(10px);
         }
         .scroll-button:hover {
             transform: translateY(-6px) scale(1.03);
-            background: #e06b8d;
-            box-shadow: 0 0 50px #c95a7a88;
+            background: linear-gradient(135deg, #e06b8d, #c95a7a);
+            box-shadow: 0 0 60px #c95a7a88, 0 10px 40px rgba(0,0,0,0.3);
         }
 
+        /* Floating hearts */
         .floating-heart {
             position: absolute;
-            font-size: 28px;
-            opacity: 0.5;
-            animation: float 10s linear infinite;
+            font-size: 30px;
+            opacity: 0.4;
+            animation: float 12s linear infinite;
             z-index: 1;
-            filter: drop-shadow(0 0 10px #ff6b8a66);
+            filter: drop-shadow(0 0 15px #ff6b8a44);
         }
         .h1 { left: 5%; animation-delay: 0s; }
-        .h2 { left: 20%; animation-delay: 3s; font-size: 35px; }
+        .h2 { left: 20%; animation-delay: 3s; font-size: 38px; }
         .h3 { left: 50%; animation-delay: 6s; }
-        .h4 { left: 75%; animation-delay: 2s; font-size: 32px; }
-        .h5 { left: 90%; animation-delay: 8s; }
+        .h4 { left: 75%; animation-delay: 2s; font-size: 34px; }
+        .h5 { left: 90%; animation-delay: 9s; }
         @keyframes float {
-            0% { bottom: -60px; transform: translateX(0) rotate(0deg); opacity: 0.2; }
-            50% { opacity: 0.7; }
-            100% { bottom: 110%; transform: translateX(80px) rotate(720deg); opacity: 0.2; }
+            0% { bottom: -80px; transform: translateX(0) rotate(0deg); opacity: 0.1; }
+            50% { opacity: 0.6; }
+            100% { bottom: 110%; transform: translateX(100px) rotate(720deg); opacity: 0.1; }
         }
 
         /* ===== COUNTER ===== */
         .counter-section {
             text-align: center;
-            padding: 90px 20px;
-            background: linear-gradient(180deg, #1a0f14, #2d1a24);
+            padding: 100px 20px;
+            background: rgba(26, 15, 20, 0.6);
+            backdrop-filter: blur(20px);
             color: #fce4ec;
-            border-top: 1px solid #ffb6c133;
-            border-bottom: 1px solid #ffb6c133;
+            border-top: 1px solid rgba(255, 182, 193, 0.08);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.08);
+            position: relative;
+        }
+        .counter-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, #ff6b8a08, transparent 70%);
+            pointer-events: none;
         }
         .counter-section h2 {
-            font-size: 38px;
+            font-size: 40px;
             color: #f5d0d9;
             margin-bottom: 15px;
-            text-shadow: 0 0 30px #ff6b8a44;
+            text-shadow: 0 0 40px #ff6b8a44;
+            letter-spacing: 2px;
         }
         .counter-section p {
             color: #d4a0b0;
             font-size: 18px;
+            letter-spacing: 1px;
         }
         .counter {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: bold;
             color: #ff8fab;
-            margin-top: 20px;
-            background: #2d1a2444;
+            margin-top: 25px;
+            background: rgba(45, 26, 36, 0.5);
             display: inline-block;
-            padding: 15px 40px;
+            padding: 18px 50px;
             border-radius: 60px;
-            backdrop-filter: blur(10px);
-            border: 1px solid #ffb6c144;
-            box-shadow: 0 0 40px #ff6b8a22;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 182, 193, 0.12);
+            box-shadow: 0 0 60px #ff6b8a22, inset 0 1px 0 rgba(255,255,255,0.05);
+            letter-spacing: 1px;
         }
 
         /* ===== GALLERY ===== */
         .gallery-section {
-            padding: 80px 5%;
-            background: linear-gradient(180deg, #0d080b, #1a0f14, #0d080b);
+            padding: 100px 5%;
+            background: transparent;
+            position: relative;
+        }
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 70%, #ff6b8a06, transparent 50%),
+                        radial-gradient(ellipse at 70% 30%, #dda0dd06, transparent 50%);
+            pointer-events: none;
         }
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         .section-title h2 {
-            font-size: 44px;
+            font-size: 46px;
             color: #f5d0d9;
-            text-shadow: 0 0 30px #ff6b8a44;
-            letter-spacing: 3px;
+            text-shadow: 0 0 40px #ff6b8a44;
+            letter-spacing: 4px;
+            font-weight: 700;
         }
         .section-title p {
             color: #b88a98;
             font-size: 18px;
             font-style: italic;
+            letter-spacing: 1px;
         }
 
         .gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
+            gap: 30px;
             max-width: 1400px;
             margin: auto;
+            position: relative;
+            z-index: 1;
         }
 
         .photo-card {
-            background: #1f1219;
-            border-radius: 20px;
+            background: rgba(31, 18, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            transition: 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
-            border: 1px solid #ffb6c122;
+            border: 1px solid rgba(255, 182, 193, 0.08);
             position: relative;
         }
         .photo-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 2px;
-            background: conic-gradient(from 0deg, #ff6b8a88, #dda0dd88, #ff6b8a88);
+            inset: -1px;
+            border-radius: 24px;
+            padding: 1px;
+            background: conic-gradient(from 0deg, #ff6b8a66, #dda0dd66, #ff6b8a66);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             pointer-events: none;
             opacity: 0;
-            transition: 0.5s;
+            transition: 0.6s;
         }
         .photo-card:hover::before {
             opacity: 1;
         }
         .photo-card:hover {
-            transform: translateY(-12px) scale(1.01);
-            box-shadow: 0 20px 50px rgba(255, 107, 138, 0.25);
-            border-color: #ff6b8a66;
+            transform: translateY(-16px) scale(1.01);
+            box-shadow: 0 30px 70px rgba(255, 107, 138, 0.15), 0 0 40px rgba(255, 107, 138, 0.05);
+            border-color: rgba(255, 107, 138, 0.15);
         }
 
         .photo {
@@ -230,15 +316,16 @@
             height: 300px;
             object-fit: cover;
             display: block;
-            transition: 0.5s;
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .photo-card:hover .photo {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
         .photo-info {
-            padding: 20px 22px 24px;
-            background: #1a0f14;
+            padding: 22px 24px 26px;
+            background: rgba(26, 15, 20, 0.4);
+            backdrop-filter: blur(10px);
         }
         .photo-info h3 {
             color: #f5d0d9;
@@ -260,57 +347,84 @@
 
         /* ===== LETTER ===== */
         .letter-section {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, #0d080b, #1a0f14, #0d080b);
+            padding: 120px 20px;
+            background: transparent;
             text-align: center;
-            border-top: 1px solid #ffb6c133;
-            border-bottom: 1px solid #ffb6c133;
+            border-top: 1px solid rgba(255, 182, 193, 0.06);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.06);
+            position: relative;
+        }
+        .letter-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, #ff6b8a06, transparent 60%);
+            pointer-events: none;
         }
         .letter {
             max-width: 750px;
             margin: auto;
-            background: #1f1219;
-            padding: 50px 55px;
-            border-radius: 24px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+            background: rgba(31, 18, 25, 0.5);
+            backdrop-filter: blur(30px);
+            padding: 55px 60px;
+            border-radius: 28px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
             text-align: left;
-            border: 1px solid #ffb6c122;
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .letter::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 20%, #ff6b8a08, transparent 60%);
+            pointer-events: none;
         }
         .letter h2 {
             text-align: center;
             color: #f5d0d9;
             margin-bottom: 30px;
-            font-size: 36px;
-            text-shadow: 0 0 30px #ff6b8a44;
+            font-size: 38px;
+            text-shadow: 0 0 40px #ff6b8a44;
+            letter-spacing: 2px;
         }
         .letter p {
             line-height: 2;
             margin-bottom: 18px;
             color: #d4b0bc;
             font-size: 17px;
+            position: relative;
+            z-index: 1;
         }
         .signature {
             text-align: right;
             color: #ff8fab;
-            font-size: 22px;
+            font-size: 24px;
             margin-top: 30px;
             font-style: italic;
-            text-shadow: 0 0 20px #ff6b8a44;
+            text-shadow: 0 0 30px #ff6b8a44;
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== FOOTER ===== */
         footer {
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
-            background: #0b080a;
+            background: rgba(11, 8, 10, 0.6);
+            backdrop-filter: blur(10px);
             color: #a87a86;
-            border-top: 1px solid #ffb6c122;
+            border-top: 1px solid rgba(255, 182, 193, 0.06);
             font-size: 15px;
             letter-spacing: 1px;
         }
         footer p {
-            opacity: 0.7;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+        footer p:hover {
+            opacity: 1;
         }
 
         /* ===== MODAL ===== */
@@ -319,11 +433,11 @@
             position: fixed;
             z-index: 9999;
             inset: 0;
-            background: rgba(5, 3, 4, 0.96);
+            background: rgba(5, 3, 4, 0.92);
+            backdrop-filter: blur(30px);
             justify-content: center;
             align-items: center;
             padding: 30px;
-            backdrop-filter: blur(10px);
         }
         .modal.active {
             display: flex;
@@ -331,9 +445,14 @@
         .modal img {
             max-width: 90%;
             max-height: 85vh;
-            border-radius: 14px;
+            border-radius: 16px;
             object-fit: contain;
-            box-shadow: 0 0 60px #ff6b8a33;
+            box-shadow: 0 0 80px #ff6b8a33, 0 0 160px #ff6b8a15;
+            animation: modalFade 0.4s ease-out;
+        }
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
         .close {
             position: absolute;
@@ -342,11 +461,11 @@
             font-size: 50px;
             color: #f5d0d9;
             cursor: pointer;
-            transition: 0.3s;
-            text-shadow: 0 0 20px #ff6b8a44;
+            transition: 0.4s;
+            text-shadow: 0 0 30px #ff6b8a44;
         }
         .close:hover {
-            transform: rotate(90deg);
+            transform: rotate(90deg) scale(1.1);
             color: #ff8fab;
         }
         .prev, .next {
@@ -354,39 +473,38 @@
             top: 50%;
             transform: translateY(-50%);
             border: none;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             color: #f5d0d9;
-            font-size: 42px;
-            width: 60px;
-            height: 80px;
+            font-size: 44px;
+            width: 65px;
+            height: 85px;
             cursor: pointer;
-            border-radius: 14px;
-            backdrop-filter: blur(5px);
-            border: 1px solid #ffb6c133;
-            transition: 0.3s;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 182, 193, 0.08);
+            transition: 0.4s;
         }
-        .prev { left: 25px; }
-        .next { right: 25px; }
+        .prev { left: 30px; }
+        .next { right: 30px; }
         .prev:hover, .next:hover {
-            background: rgba(255, 107, 138, 0.2);
-            border-color: #ff6b8a66;
+            background: rgba(255, 107, 138, 0.12);
+            border-color: rgba(255, 107, 138, 0.2);
+            transform: translateY(-50%) scale(1.05);
         }
 
-        /* ===== MOBILE ===== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .letter { padding: 40px 35px; }
         }
         @media (max-width: 600px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 { letter-spacing: 2px; }
+            .gallery { grid-template-columns: 1fr; gap: 20px; }
+            .hero h1 { letter-spacing: 2px; font-size: 38px; }
             .hero p { font-size: 17px; }
             .gallery-section { padding: 50px 16px; }
             .photo { height: 280px; }
             .letter { padding: 30px 20px; }
+            .letter h2 { font-size: 28px; }
             .prev, .next {
                 width: 45px;
                 height: 55px;
@@ -394,15 +512,23 @@
             }
             .prev { left: 8px; }
             .next { right: 8px; }
-            .counter { font-size: 22px; padding: 12px 24px; }
+            .counter { font-size: 22px; padding: 14px 28px; }
+            .counter-section { padding: 60px 16px; }
+            .counter-section h2 { font-size: 30px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== ANIMATED BACKGROUND ===== -->
+    <div class="bg-gradient"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+    <canvas id="particles-canvas"></canvas>
+
     <!-- ===== HERO ===== -->
     <section class="hero">
-        <div class="stars"></div>
         <div class="floating-heart h1">❤️</div>
         <div class="floating-heart h2">💕</div>
         <div class="floating-heart h3">💗</div>
@@ -410,7 +536,7 @@
         <div class="floating-heart h5">🌸</div>
         <div class="hero-content">
             <div class="heart">❤️</div>
-            <h1>OUR MEMORIES</h1>
+            <h1><span>OUR MEMORIES</span></h1>
             <p>
                 "Some moments become memories.<br>
                 Some memories become forever."
@@ -432,9 +558,7 @@
             <h2>📸 Our Memories</h2>
             <p>Kumpulan momen yang tidak ingin kita lupakan.</p>
         </div>
-        <div class="gallery" id="galleryGrid">
-            <!-- Foto akan diisi oleh JavaScript -->
-        </div>
+        <div class="gallery" id="galleryGrid"></div>
     </section>
 
     <!-- ===== LETTER ===== -->
@@ -463,110 +587,98 @@
     </div>
 
     <script>
-        // ===== DATA FOTO (16 SLOT) =====
-        // Foto 1 = contoh dari internet (bisa dipakai di GitHub mana pun)
-        // Foto 2-16 = foto contoh (bisa diganti dengan foto sendiri nanti)
-        const photoData = [
-            // BARIS 1
-            {
-                src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",
-                title: "Awal dari semuanya ❤️",
-                date: "Februari 2026",
-                desc: "Setiap perjalanan selalu dimulai dari satu langkah kecil."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
-                title: "Senyum yang sederhana 💕",
-                date: "Maret 2026",
-                desc: "Tidak perlu sesuatu yang besar. Bersama saja sudah cukup."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85",
-                title: "Petualangan kecil 🌿",
-                date: "April 2026",
-                desc: "Tempat boleh berubah, tapi kenangannya tetap tinggal."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85",
-                title: "Waktu bersama 🌹",
-                date: "Mei 2026",
-                desc: "Waktu terasa cepat ketika dihabiskan bersama orang yang tepat."
-            },
-            // BARIS 2
-            {
-                src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85",
-                title: "Kenangan yang indah ✨",
-                date: "Juni 2026",
-                desc: "Ada momen yang sederhana, tetapi selalu ingin diingat."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85",
-                title: "Forever memories ❤️",
-                date: "Juli 2026",
-                desc: "Beberapa kenangan tidak pernah benar-benar berakhir."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1000&q=85",
-                title: "Cahaya cinta ✨",
-                date: "Agustus 2026",
-                desc: "Kamu adalah cahaya dalam setiap hariku."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",
-                title: "Pelukan hangat 🤗",
-                date: "September 2026",
-                desc: "Tidak ada yang lebih menenangkan selain pelukanmu."
-            },
-            // BARIS 3
-            {
-                src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85",
-                title: "Petualangan baru 🌊",
-                date: "Oktober 2026",
-                desc: "Setiap hari bersamamu adalah petualangan baru."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85",
-                title: "Cinta sejati 💖",
-                date: "November 2026",
-                desc: "Cinta sejati adalah ketika kita tumbuh bersama."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
-                title: "Terima kasih 🙏",
-                date: "Desember 2026",
-                desc: "Terima kasih telah menjadi bagian dari ceritaku."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85",
-                title: "Selamanya ❤️",
-                date: "Januari 2027",
-                desc: "Untuk selamanya, aku akan selalu bersamamu."
-            },
-            // BARIS 4 (TAMBAHAN)
-            {
-                src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85",
-                title: "Bintang-bintang 🌟",
-                date: "Februari 2027",
-                desc: "Di bawah langit yang sama, kita berbagi mimpi."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85",
-                title: "Senja bersama 🌅",
-                date: "Maret 2027",
-                desc: "Senja terasa lebih indah karena ada kamu."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",
-                title: "Canda tawa 😄",
-                date: "April 2027",
-                desc: "Tawa kita adalah musik terindah yang pernah ada."
-            },
-            {
-                src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",
-                title: "Cerita kita 📖",
-                date: "Mei 2027",
-                desc: "Setiap hari adalah halaman baru dalam cerita kita."
+        // ===== PARTICLES =====
+        (function() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            const particles = [];
+            const count = 80;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
             }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.4;
+                    this.speedY = (Math.random() - 0.5) * 0.4;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > w) this.speedX *= -1;
+                    if (this.y < 0 || this.y > h) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
+                    ctx.fill();
+                    // Glow
+                    ctx.shadowColor = 'rgba(255, 107, 138, 0.2)';
+                    ctx.shadowBlur = 10;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                // Draw connecting lines
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255, 182, 193, ${0.06 * (1 - dist / 150)})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ===== DATA FOTO (16 SLOT) =====
+        const photoData = [
+            { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Awal dari semuanya ❤️", date: "Februari 2026", desc: "Setiap perjalanan selalu dimulai dari satu langkah kecil." },
+            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Senyum yang sederhana 💕", date: "Maret 2026", desc: "Tidak perlu sesuatu yang besar. Bersama saja sudah cukup." },
+            { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85", title: "Petualangan kecil 🌿", date: "April 2026", desc: "Tempat boleh berubah, tapi kenangannya tetap tinggal." },
+            { src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85", title: "Waktu bersama 🌹", date: "Mei 2026", desc: "Waktu terasa cepat ketika dihabiskan bersama orang yang tepat." },
+            { src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85", title: "Kenangan yang indah ✨", date: "Juni 2026", desc: "Ada momen yang sederhana, tetapi selalu ingin diingat." },
+            { src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85", title: "Forever memories ❤️", date: "Juli 2026", desc: "Beberapa kenangan tidak pernah benar-benar berakhir." },
+            { src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1000&q=85", title: "Cahaya cinta ✨", date: "Agustus 2026", desc: "Kamu adalah cahaya dalam setiap hariku." },
+            { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Pelukan hangat 🤗", date: "September 2026", desc: "Tidak ada yang lebih menenangkan selain pelukanmu." },
+            { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85", title: "Petualangan baru 🌊", date: "Oktober 2026", desc: "Setiap hari bersamamu adalah petualangan baru." },
+            { src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85", title: "Cinta sejati 💖", date: "November 2026", desc: "Cinta sejati adalah ketika kita tumbuh bersama." },
+            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Terima kasih 🙏", date: "Desember 2026", desc: "Terima kasih telah menjadi bagian dari ceritaku." },
+            { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85", title: "Selamanya ❤️", date: "Januari 2027", desc: "Untuk selamanya, aku akan selalu bersamamu." },
+            { src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85", title: "Bintang-bintang 🌟", date: "Februari 2027", desc: "Di bawah langit yang sama, kita berbagi mimpi." },
+            { src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85", title: "Senja bersama 🌅", date: "Maret 2027", desc: "Senja terasa lebih indah karena ada kamu." },
+            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Canda tawa 😄", date: "April 2027", desc: "Tawa kita adalah musik terindah yang pernah ada." },
+            { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Cerita kita 📖", date: "Mei 2027", desc: "Setiap hari adalah halaman baru dalam cerita kita." }
         ];
 
         // ===== RENDER GALLERY =====
@@ -625,11 +737,11 @@
         // ===== BACKGROUND MUSIC =====
         const musicContainer = document.createElement('div');
         musicContainer.id = 'music-container';
-        musicContainer.style.cssText = 'position: fixed; bottom: 25px; right: 25px; z-index: 9998; background: rgba(20, 12, 16, 0.85); backdrop-filter: blur(12px); border-radius: 50px; padding: 10px 20px 10px 16px; box-shadow: 0 6px 30px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 12px; font-family: Georgia, serif; font-size: 14px; color: #f5d0d9; border: 1px solid #ffb6c133;';
+        musicContainer.style.cssText = 'position: fixed; bottom: 25px; right: 25px; z-index: 9998; background: rgba(20, 12, 16, 0.7); backdrop-filter: blur(20px); border-radius: 60px; padding: 10px 22px 10px 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05); display: flex; align-items: center; gap: 14px; font-family: Georgia, serif; font-size: 14px; color: #f5d0d9; border: 1px solid rgba(255, 182, 193, 0.08);';
         musicContainer.innerHTML = `
-            <button id="musicToggle" style="background: #c95a7a; color: white; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 18px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(201, 90, 122, 0.3);">🔊</button>
+            <button id="musicToggle" style="background: linear-gradient(135deg, #c95a7a, #a84f6d); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 18px; cursor: pointer; transition: 0.4s; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(201, 90, 122, 0.2);">🔊</button>
             <div style="display: flex; flex-direction: column; line-height: 1.3;">
-                <span style="font-size: 13px; font-weight: bold; color: #f5d0d9;">🎵 1000X</span>
+                <span style="font-size: 13px; font-weight: bold; color: #f5d0d9; letter-spacing: 0.5px;">🎵 1000X</span>
                 <span style="font-size: 10px; color: #b88a98;">Ghea Indrawari</span>
             </div>
         `;
@@ -659,59 +771,56 @@
             } else {
                 tryPlay();
                 musicBtn.textContent = '🔊';
-                musicBtn.style.background = '#c95a7a';
+                musicBtn.style.background = 'linear-gradient(135deg, #c95a7a, #a84f6d)';
                 musicPlaying = true;
             }
         });
-        console.log('🎵 Background music: 1000X - Ghea Indrawari');
+
+        // ===== EFEK KURSOR HATI =====
+        (function() {
+            let mouseX = 0, mouseY = 0;
+            let moveTimeout;
+
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                clearTimeout(moveTimeout);
+                moveTimeout = setTimeout(() => {}, 100);
+                createHeart(mouseX, mouseY);
+            });
+
+            function createHeart(x, y) {
+                const heart = document.createElement('div');
+                const emojis = ['❤️', '💕', '💗', '💖', '✨'];
+                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.cssText = `
+                    position: fixed;
+                    left: ${x - 10}px;
+                    top: ${y - 10}px;
+                    font-size: ${Math.random() * 18 + 12}px;
+                    pointer-events: none;
+                    z-index: 99999;
+                    opacity: 1;
+                    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    transform: translate(0, 0) scale(1) rotate(0deg);
+                    filter: drop-shadow(0 0 10px rgba(255,107,138,0.4));
+                    user-select: none;
+                `;
+                document.body.appendChild(heart);
+
+                const xMove = (Math.random() - 0.5) * 130;
+                const yMove = -Math.random() * 180 - 60;
+
+                requestAnimationFrame(() => {
+                    heart.style.transform = `translate(${xMove}px, ${yMove}px) scale(0.1) rotate(${Math.random() * 360}deg)`;
+                    heart.style.opacity = '0';
+                });
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 1500);
+            }
+        })();
     </script>
-    <!-- ===== EFEK KURSOR HATI ===== -->
-<script>
-(function() {
-    const hearts = [];
-    let mouseX = 0, mouseY = 0;
-    let isMoving = false;
-    let moveTimeout;
-
-    document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        isMoving = true;
-        clearTimeout(moveTimeout);
-        moveTimeout = setTimeout(() => { isMoving = false; }, 100);
-        createHeart(mouseX, mouseY);
-    });
-
-    function createHeart(x, y) {
-        const heart = document.createElement('div');
-        heart.innerHTML = ['❤️', '💕', '💗', '💖', '✨'][Math.floor(Math.random() * 5)];
-        heart.style.cssText = `
-            position: fixed;
-            left: ${x - 10}px;
-            top: ${y - 10}px;
-            font-size: ${Math.random() * 18 + 12}px;
-            pointer-events: none;
-            z-index: 99999;
-            opacity: 1;
-            transition: all 1.2s ease-out;
-            transform: translate(0, 0) scale(1) rotate(0deg);
-            filter: drop-shadow(0 0 6px rgba(255,107,138,0.5));
-        `;
-        document.body.appendChild(heart);
-
-        const xMove = (Math.random() - 0.5) * 120;
-        const yMove = -Math.random() * 150 - 50;
-
-        setTimeout(() => {
-            heart.style.transform = `translate(${xMove}px, ${yMove}px) scale(0.2) rotate(${Math.random() * 360}deg)`;
-            heart.style.opacity = '0';
-        }, 20);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 1500);
-    }
-})();
-</script>
 </body>
 </html>
