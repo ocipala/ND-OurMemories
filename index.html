@@ -314,84 +314,148 @@
             letter-spacing: 1px;
         }
 
+        /* ===== POLAROID EFFECT ===== */
         .gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            gap: 40px 30px;
             max-width: 1400px;
             margin: auto;
             position: relative;
             z-index: 1;
+            padding: 20px 0;
         }
 
         .photo-card {
-            background: rgba(31, 18, 25, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-            transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            border: 1px solid rgba(255, 182, 193, 0.08);
+            background: #f5f0eb !important;
+            padding: 12px 12px 20px 12px;
+            border-radius: 8px !important;
+            box-shadow: 
+                0 8px 30px rgba(0,0,0,0.4),
+                0 2px 10px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            transform: rotate(var(--rotation, 0deg));
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: none !important;
             position: relative;
+            cursor: pointer;
             transform-style: preserve-3d;
             perspective: 800px;
         }
-        .photo-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 24px;
-            padding: 1px;
-            background: conic-gradient(from 0deg, #ff6b8a66, #dda0dd66, #ff6b8a66);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            opacity: 0;
-            transition: 0.6s;
-        }
-        .photo-card:hover::before {
-            opacity: 1;
-        }
-        .photo-card:hover {
-            transform: translateY(-16px) scale(1.01);
-            box-shadow: 0 30px 70px rgba(255, 107, 138, 0.15), 0 0 40px rgba(255, 107, 138, 0.05);
-            border-color: rgba(255, 107, 138, 0.15);
-        }
 
-        .photo {
+        /* Setiap polaroid punya rotasi berbeda */
+        .photo-card:nth-child(1) { --rotation: -1.5deg; }
+        .photo-card:nth-child(2) { --rotation: 2deg; }
+        .photo-card:nth-child(3) { --rotation: -2.5deg; }
+        .photo-card:nth-child(4) { --rotation: 1.8deg; }
+        .photo-card:nth-child(5) { --rotation: -1deg; }
+        .photo-card:nth-child(6) { --rotation: 2.5deg; }
+        .photo-card:nth-child(7) { --rotation: -2deg; }
+        .photo-card:nth-child(8) { --rotation: 1.2deg; }
+        .photo-card:nth-child(9) { --rotation: -2.8deg; }
+        .photo-card:nth-child(10) { --rotation: 1.5deg; }
+        .photo-card:nth-child(11) { --rotation: -1.8deg; }
+        .photo-card:nth-child(12) { --rotation: 2.2deg; }
+        .photo-card:nth-child(13) { --rotation: -2.3deg; }
+        .photo-card:nth-child(14) { --rotation: 1deg; }
+        .photo-card:nth-child(15) { --rotation: -1.2deg; }
+        .photo-card:nth-child(16) { --rotation: 2.8deg; }
+
+        /* Foto di dalam polaroid */
+        .photo-card .photo {
             width: 100%;
-            height: 300px;
+            height: 320px;
             object-fit: cover;
             display: block;
-            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .photo-card:hover .photo {
-            transform: scale(1.04);
+            border-radius: 4px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
         }
 
-        .photo-info {
-            padding: 22px 24px 26px;
-            background: rgba(26, 15, 20, 0.4);
-            backdrop-filter: blur(10px);
+        /* Info di bawah foto (seperti tulisan tangan di polaroid) */
+        .photo-card .photo-info {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            padding: 12px 4px 4px 4px;
+            text-align: center;
         }
-        .photo-info h3 {
-            color: #f5d0d9;
-            font-size: 20px;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-        .date {
-            color: #b88a98;
-            font-size: 13px;
-            margin-bottom: 10px;
+
+        .photo-card .photo-info h3 {
+            color: #2d1a24 !important;
+            font-family: 'Georgia', cursive, serif;
+            font-size: 16px;
+            font-weight: normal;
             letter-spacing: 0.5px;
+            margin-bottom: 2px;
         }
-        .photo-info p {
-            color: #b08a96;
-            line-height: 1.6;
-            font-size: 15px;
+
+        .photo-card .photo-info .date {
+            color: #8a7a7a !important;
+            font-size: 11px;
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .photo-card .photo-info p {
+            color: #6a5a5a !important;
+            font-size: 13px;
+            font-style: italic;
+            font-family: 'Georgia', cursive, serif;
+            line-height: 1.4;
+        }
+
+        /* Hover effect - polaroid terangkat */
+        .photo-card:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-15px) !important;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.5),
+                0 0 40px rgba(255,107,138,0.08) !important;
+            z-index: 10;
+        }
+
+        .photo-card:hover .photo {
+            transform: scale(1.02);
+        }
+
+        /* Efek shadow di bawah polaroid (seperti bayangan kertas) */
+        .photo-card::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 10%;
+            width: 80%;
+            height: 20px;
+            background: rgba(0,0,0,0.15);
+            filter: blur(12px);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .photo-card:hover::after {
+            opacity: 0.8;
+            width: 90%;
+            left: 5%;
+        }
+
+        /* Stiker/pin di sudut polaroid */
+        .photo-card::before {
+            content: '📌';
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 20px;
+            opacity: 0.6;
+            transform: rotate(15deg);
+            z-index: 2;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            display: block !important;
+            -webkit-mask: none !important;
+            mask: none !important;
+            background: none !important;
+            padding: 0 !important;
+            pointer-events: none;
         }
 
         /* ===== LETTER ===== */
@@ -553,15 +617,28 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 35px 25px; }
             .letter { padding: 40px 35px; }
+            .photo-card .photo { height: 280px; }
         }
+        
         @media (max-width: 600px) {
-            .gallery { grid-template-columns: 1fr; gap: 20px; }
+            .gallery { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+                padding: 10px 0;
+            }
             .hero h1 { letter-spacing: 2px; font-size: 38px; }
             .hero p { font-size: 17px; }
             .gallery-section { padding: 50px 16px; }
-            .photo { height: 280px; }
+            .photo-card .photo { height: 280px; }
+            .photo-card {
+                padding: 10px 10px 16px 10px;
+                max-width: 340px;
+                margin: 0 auto;
+            }
+            .photo-card .photo-info h3 { font-size: 14px; }
+            .photo-card::before { font-size: 16px; top: 6px; right: 8px; }
             .letter { padding: 30px 20px; }
             .letter h2 { font-size: 28px; }
             .prev, .next {
@@ -576,6 +653,13 @@
             .counter-section h2 { font-size: 30px; }
             #splash .big-heart { font-size: 50px; }
             #splash .splash-text { font-size: 18px; }
+        }
+
+        @media (max-width: 400px) {
+            .photo-card .photo { height: 230px; }
+            .photo-card { max-width: 280px; }
+            .photo-card .photo-info h3 { font-size: 13px; }
+            .photo-card .photo-info p { font-size: 11px; }
         }
     </style>
 </head>
@@ -625,7 +709,7 @@
     <!-- ===== GALLERY ===== -->
     <section class="gallery-section" id="gallery">
         <div class="section-title">
-            <h2>📸 Our Memories</h2>
+            <h2>📸 Polaroid Memories</h2>
             <p>Kumpulan momen yang tidak ingin kita lupakan.</p>
         </div>
         <div class="gallery" id="galleryGrid"></div>
@@ -680,24 +764,7 @@
             }
         })();
 
-        // ===== 3D TILT EFFECT =====
-        (function() {
-            const cards = document.querySelectorAll('.photo-card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5;
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    this.style.transform =
-                        `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-8px) scale(1.01)`;
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)';
-                });
-            });
-        })();
-
-        // ===== DATA FOTO (16 SLOT) =====
+        // ===== DATA FOTO (16 SLOT DENGAN FOTO UNIK) =====
         const photoData = [
             { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Awal dari semuanya ❤️", date: "Februari 2026", desc: "Setiap perjalanan selalu dimulai dari satu langkah kecil." },
             { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Senyum yang sederhana 💕", date: "Maret 2026", desc: "Tidak perlu sesuatu yang besar. Bersama saja sudah cukup." },
@@ -706,15 +773,15 @@
             { src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85", title: "Kenangan yang indah ✨", date: "Juni 2026", desc: "Ada momen yang sederhana, tetapi selalu ingin diingat." },
             { src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85", title: "Forever memories ❤️", date: "Juli 2026", desc: "Beberapa kenangan tidak pernah benar-benar berakhir." },
             { src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1000&q=85", title: "Cahaya cinta ✨", date: "Agustus 2026", desc: "Kamu adalah cahaya dalam setiap hariku." },
-            { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Pelukan hangat 🤗", date: "September 2026", desc: "Tidak ada yang lebih menenangkan selain pelukanmu." },
-            { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85", title: "Petualangan baru 🌊", date: "Oktober 2026", desc: "Setiap hari bersamamu adalah petualangan baru." },
-            { src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85", title: "Cinta sejati 💖", date: "November 2026", desc: "Cinta sejati adalah ketika kita tumbuh bersama." },
-            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Terima kasih 🙏", date: "Desember 2026", desc: "Terima kasih telah menjadi bagian dari ceritaku." },
-            { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85", title: "Selamanya ❤️", date: "Januari 2027", desc: "Untuk selamanya, aku akan selalu bersamamu." },
-            { src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85", title: "Bintang-bintang 🌟", date: "Februari 2027", desc: "Di bawah langit yang sama, kita berbagi mimpi." },
-            { src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85", title: "Senja bersama 🌅", date: "Maret 2027", desc: "Senja terasa lebih indah karena ada kamu." },
-            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Canda tawa 😄", date: "April 2027", desc: "Tawa kita adalah musik terindah yang pernah ada." },
-            { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Cerita kita 📖", date: "Mei 2027", desc: "Setiap hari adalah halaman baru dalam cerita kita." }
+            { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85", title: "Petualangan baru 🌊", date: "September 2026", desc: "Setiap hari bersamamu adalah petualangan baru." },
+            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Cinta sejati 💖", date: "Oktober 2026", desc: "Cinta sejati adalah ketika kita tumbuh bersama." },
+            { src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=85", title: "Terima kasih 🙏", date: "November 2026", desc: "Terima kasih telah menjadi bagian dari ceritaku." },
+            { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85", title: "Selamanya ❤️", date: "Desember 2026", desc: "Untuk selamanya, aku akan selalu bersamamu." },
+            { src: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000&q=85", title: "Bintang-bintang 🌟", date: "Januari 2027", desc: "Di bawah langit yang sama, kita berbagi mimpi." },
+            { src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000&q=85", title: "Senja bersama 🌅", date: "Februari 2027", desc: "Senja terasa lebih indah karena ada kamu." },
+            { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Canda tawa 😄", date: "Maret 2027", desc: "Tawa kita adalah musik terindah yang pernah ada." },
+            { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Cerita kita 📖", date: "April 2027", desc: "Setiap hari adalah halaman baru dalam cerita kita." },
+            { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85", title: "Kebahagiaan 🌸", date: "Mei 2027", desc: "Kebahagiaan sejati adalah ketika kita bersama." }
         ];
 
         // ===== RENDER GALLERY =====
@@ -722,6 +789,11 @@
         photoData.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'photo-card';
+            
+            // Tambah random rotation ekstra
+            const extraRotate = (Math.random() - 0.5) * 2;
+            card.style.setProperty('--rotation', `${extraRotate}deg`);
+            
             card.onclick = () => openPhoto(index);
             card.innerHTML = `
                 <img class="photo" src="${item.src}" alt="${item.title}" loading="lazy">
@@ -734,9 +806,8 @@
             galleryGrid.appendChild(card);
         });
 
-        // ===== LOVE COUNTER (DETAIL) =====
-        // Tanggal mulai: 10 Agustus 2026
-        const startDate = new Date(2026, 4, 2); // bulan 7 = Agustus
+        // ===== LOVE COUNTER =====
+        const startDate = new Date(2026, 4, 2);
 
         function updateCounter() {
             const now = new Date();
@@ -806,7 +877,7 @@
         musicIframe.width = 0;
         musicIframe.height = 0;
         musicIframe.style.display = 'none';
-        musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1';
+        musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1&mute=1';
         musicIframe.allow = 'autoplay; encrypted-media';
         document.body.appendChild(musicIframe);
 
@@ -815,7 +886,7 @@
         let musicPlaying = true;
 
         function tryPlay() {
-            musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1';
+            musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1&mute=1';
         }
         tryPlay();
 
@@ -875,6 +946,25 @@
                 setTimeout(() => {
                     heart.remove();
                 }, 1500);
+            }
+        })();
+
+        // ===== 3D TILT EFFECT (khusus desktop) =====
+        (function() {
+            if (window.innerWidth > 768) {
+                const cards = document.querySelectorAll('.photo-card');
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', function(e) {
+                        const rect = this.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width - 0.5;
+                        const y = (e.clientY - rect.top) / rect.height - 0.5;
+                        this.style.transform = 
+                            `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-8px) scale(1.02)`;
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        this.style.transform = `perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)`;
+                    });
+                });
             }
         })();
     </script>
