@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Memories ❤️</title>
+    
+    <!-- Library Crypto.js untuk hashing password -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
     <style>
         /* ===== RESET ===== */
         * {
@@ -769,7 +773,7 @@
         <h1>💕 Untuk Kamu</h1>
         <div class="sub-text">"Hanya untuk kita berdua"</div>
         <div class="hint">💡 Petunjuk: Jumlah dari tanggal lahir aku dan kamu (DD+DD)</div>
-        <input type="password" id="passwordInput" placeholder="contoh: 14022024" onkeydown="if(event.key==='Enter') checkPassword()">
+        <input type="password" id="passwordInput" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter') checkPassword()">
         <button onclick="checkPassword()">Buka ❤️</button>
         <div class="error" id="errorMsg">❌ Password salah, coba lagi sayang 😘</div>
         <div class="decor">✦ ✦ ✦ ✦ ✦</div>
@@ -851,14 +855,21 @@
     </div>
 
     <script>
-        // ===== PASSWORD =====        // GANTI PASSWORD DI SINI
-        const CORRECT_PASSWORD = "37"; // <-- Ganti dengan tanggal spesial kamu!
+        // ============================================================
+        // PASSWORD HASH - Password asli: "37"
+        // Hash dibuat dengan: CryptoJS.SHA256("37").toString()
+        // ============================================================
+        const PASSWORD_HASH = "b07eacf2b1e07ad30b8d641f775398fb7ae4201dca2a682f2c60fe907702946e";
 
         function checkPassword() {
             const input = document.getElementById('passwordInput');
             const error = document.getElementById('errorMsg');
             
-            if (input.value === CORRECT_PASSWORD) {
+            // Hash input user
+            const hashedInput = CryptoJS.SHA256(input.value).toString();
+            
+            // Bandingkan dengan hash yang sudah disimpan
+            if (hashedInput === PASSWORD_HASH) {
                 // Password benar - sembunyikan layar password
                 document.getElementById('passwordScreen').classList.add('hidden');
                 // Mulai konten utama
