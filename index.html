@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Memories ❤️</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
-    </script>
     <style>
         /* ===== RESET ===== */
         * {
@@ -47,13 +45,8 @@
             filter: drop-shadow(0 0 60px #ff6b8a66);
         }
         @keyframes splashPulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.15);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
         #passwordScreen h1 {
             color: #f5d0d9;
@@ -162,12 +155,8 @@
             animation: fadeText 1.5s ease-in-out infinite alternate;
         }
         @keyframes fadeText {
-            0% {
-                opacity: 0.4;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
         }
         #splash .loading-bar {
             margin-top: 30px;
@@ -185,12 +174,8 @@
             animation: loadFill 2s ease-in-out forwards;
         }
         @keyframes loadFill {
-            0% {
-                width: 0%;
-            }
-            100% {
-                width: 100%;
-            }
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
 
         /* ===== ANIMATED BACKGROUND ===== */
@@ -203,18 +188,12 @@
             animation: gradientShift 15s ease infinite;
         }
         @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* ===== FLOATING HEARTS (Background) ===== */
+        /* ===== FLOATING HEARTS ===== */
         .bg-hearts-container {
             position: fixed;
             inset: 0;
@@ -229,20 +208,10 @@
             animation: bgHeartFloat 18s linear infinite;
         }
         @keyframes bgHeartFloat {
-            0% {
-                transform: translateY(110vh) rotate(0deg) scale(0.8);
-                opacity: 0.05;
-            }
-            10% {
-                opacity: 0.2;
-            }
-            90% {
-                opacity: 0.2;
-            }
-            100% {
-                transform: translateY(-20vh) rotate(720deg) scale(1.2);
-                opacity: 0.05;
-            }
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0.05; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-20vh) rotate(720deg) scale(1.2); opacity: 0.05; }
         }
 
         /* ===== GLOW ORBS ===== */
@@ -281,12 +250,8 @@
             animation-delay: -8s;
         }
         @keyframes orbFloat {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(60px, -40px) scale(1.2);
-            }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.2); }
         }
 
         /* ===== HERO ===== */
@@ -308,14 +273,8 @@
             animation: fadeInUp 1.2s ease-out;
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .heart-main {
             font-size: 72px;
@@ -324,13 +283,8 @@
             filter: drop-shadow(0 0 40px #ff6b8a88) drop-shadow(0 0 80px #ff6b8a44);
         }
         @keyframes heartbeat {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.15);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
         .hero h1 {
             font-size: clamp(48px, 9vw, 96px);
@@ -345,13 +299,8 @@
             animation: shimmer 3s ease-in-out infinite;
         }
         @keyframes shimmer {
-            0%,
-            100% {
-                text-shadow: 0 0 40px #ff6b8a66, 0 0 80px #ff6b8a33;
-            }
-            50% {
-                text-shadow: 0 0 60px #ff8fab88, 0 0 120px #ff6b8a55, 0 0 180px #ff6b8a33;
-            }
+            0%, 100% { text-shadow: 0 0 40px #ff6b8a66, 0 0 80px #ff6b8a33; }
+            50% { text-shadow: 0 0 60px #ff8fab88, 0 0 120px #ff6b8a55, 0 0 180px #ff6b8a33; }
         }
         .hero p {
             font-size: 22px;
@@ -370,7 +319,7 @@
             color: white;
             text-decoration: none;
             transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 0 40px #c95a7a55, inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 40px #c95a7a55, inset 0 1px 0 rgba(255,255,255,0.15);
             font-weight: bold;
             letter-spacing: 2px;
             border: 1px solid #ffb6c144;
@@ -379,7 +328,7 @@
         .scroll-button:hover {
             transform: translateY(-6px) scale(1.03);
             background: linear-gradient(135deg, #e06b8d, #c95a7a);
-            box-shadow: 0 0 60px #c95a7a88, 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 60px #c95a7a88, 0 10px 40px rgba(0,0,0,0.3);
         }
 
         .floating-heart {
@@ -390,42 +339,15 @@
             z-index: 1;
             filter: drop-shadow(0 0 15px #ff6b8a44);
         }
-        .h1 {
-            left: 5%;
-            animation-delay: 0s;
-        }
-        .h2 {
-            left: 20%;
-            animation-delay: 3s;
-            font-size: 38px;
-        }
-        .h3 {
-            left: 50%;
-            animation-delay: 6s;
-        }
-        .h4 {
-            left: 75%;
-            animation-delay: 2s;
-            font-size: 34px;
-        }
-        .h5 {
-            left: 90%;
-            animation-delay: 9s;
-        }
+        .h1 { left: 5%; animation-delay: 0s; }
+        .h2 { left: 20%; animation-delay: 3s; font-size: 38px; }
+        .h3 { left: 50%; animation-delay: 6s; }
+        .h4 { left: 75%; animation-delay: 2s; font-size: 34px; }
+        .h5 { left: 90%; animation-delay: 9s; }
         @keyframes float {
-            0% {
-                bottom: -80px;
-                transform: translateX(0) rotate(0deg);
-                opacity: 0.1;
-            }
-            50% {
-                opacity: 0.6;
-            }
-            100% {
-                bottom: 110%;
-                transform: translateX(100px) rotate(720deg);
-                opacity: 0.1;
-            }
+            0% { bottom: -80px; transform: translateX(0) rotate(0deg); opacity: 0.1; }
+            50% { opacity: 0.6; }
+            100% { bottom: 110%; transform: translateX(100px) rotate(720deg); opacity: 0.1; }
         }
 
         /* ===== COUNTER ===== */
@@ -462,7 +384,7 @@
             border-radius: 60px;
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 182, 193, 0.12);
-            box-shadow: 0 0 60px #ff6b8a22, inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 60px #ff6b8a22, inset 0 1px 0 rgba(255,255,255,0.05);
             letter-spacing: 1px;
         }
 
@@ -506,7 +428,7 @@
             background: #f5f0eb !important;
             padding: 12px 12px 20px 12px;
             border-radius: 8px !important;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 2px 10px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
             transform: rotate(var(--rotation, 0deg));
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: none !important;
@@ -515,55 +437,22 @@
             transform-style: preserve-3d;
             perspective: 800px;
         }
-
-        .photo-card:nth-child(1) {
-            --rotation: -1.5deg;
-        }
-        .photo-card:nth-child(2) {
-            --rotation: 2deg;
-        }
-        .photo-card:nth-child(3) {
-            --rotation: -2.5deg;
-        }
-        .photo-card:nth-child(4) {
-            --rotation: 1.8deg;
-        }
-        .photo-card:nth-child(5) {
-            --rotation: -1deg;
-        }
-        .photo-card:nth-child(6) {
-            --rotation: 2.5deg;
-        }
-        .photo-card:nth-child(7) {
-            --rotation: -2deg;
-        }
-        .photo-card:nth-child(8) {
-            --rotation: 1.2deg;
-        }
-        .photo-card:nth-child(9) {
-            --rotation: -2.8deg;
-        }
-        .photo-card:nth-child(10) {
-            --rotation: 1.5deg;
-        }
-        .photo-card:nth-child(11) {
-            --rotation: -1.8deg;
-        }
-        .photo-card:nth-child(12) {
-            --rotation: 2.2deg;
-        }
-        .photo-card:nth-child(13) {
-            --rotation: -2.3deg;
-        }
-        .photo-card:nth-child(14) {
-            --rotation: 1deg;
-        }
-        .photo-card:nth-child(15) {
-            --rotation: -1.2deg;
-        }
-        .photo-card:nth-child(16) {
-            --rotation: 2.8deg;
-        }
+        .photo-card:nth-child(1) { --rotation: -1.5deg; }
+        .photo-card:nth-child(2) { --rotation: 2deg; }
+        .photo-card:nth-child(3) { --rotation: -2.5deg; }
+        .photo-card:nth-child(4) { --rotation: 1.8deg; }
+        .photo-card:nth-child(5) { --rotation: -1deg; }
+        .photo-card:nth-child(6) { --rotation: 2.5deg; }
+        .photo-card:nth-child(7) { --rotation: -2deg; }
+        .photo-card:nth-child(8) { --rotation: 1.2deg; }
+        .photo-card:nth-child(9) { --rotation: -2.8deg; }
+        .photo-card:nth-child(10) { --rotation: 1.5deg; }
+        .photo-card:nth-child(11) { --rotation: -1.8deg; }
+        .photo-card:nth-child(12) { --rotation: 2.2deg; }
+        .photo-card:nth-child(13) { --rotation: -2.3deg; }
+        .photo-card:nth-child(14) { --rotation: 1deg; }
+        .photo-card:nth-child(15) { --rotation: -1.2deg; }
+        .photo-card:nth-child(16) { --rotation: 2.8deg; }
 
         .photo-card .photo {
             width: 100%;
@@ -571,17 +460,15 @@
             object-fit: cover;
             display: block;
             border-radius: 4px !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
         }
-
         .photo-card .photo-info {
             background: transparent !important;
             backdrop-filter: none !important;
             padding: 12px 4px 4px 4px;
             text-align: center;
         }
-
         .photo-card .photo-info h3 {
             color: #2d1a24 !important;
             font-family: 'Georgia', cursive, serif;
@@ -590,14 +477,12 @@
             letter-spacing: 0.5px;
             margin-bottom: 2px;
         }
-
         .photo-card .photo-info .date {
             color: #8a7a7a !important;
             font-size: 11px;
             font-style: italic;
             margin-bottom: 4px;
         }
-
         .photo-card .photo-info p {
             color: #6a5a5a !important;
             font-size: 13px;
@@ -605,17 +490,14 @@
             font-family: 'Georgia', cursive, serif;
             line-height: 1.4;
         }
-
         .photo-card:hover {
             transform: rotate(0deg) scale(1.05) translateY(-15px) !important;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 107, 138, 0.08) !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,107,138,0.08) !important;
             z-index: 10;
         }
-
         .photo-card:hover .photo {
             transform: scale(1.02);
         }
-
         .photo-card::after {
             content: '';
             position: absolute;
@@ -623,20 +505,18 @@
             left: 10%;
             width: 80%;
             height: 20px;
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0,0,0,0.15);
             filter: blur(12px);
             border-radius: 50%;
             transition: all 0.4s ease;
             opacity: 0.5;
             pointer-events: none;
         }
-
         .photo-card:hover::after {
             opacity: 0.8;
             width: 90%;
             left: 5%;
         }
-
         .photo-card::before {
             content: '📌';
             position: absolute;
@@ -646,7 +526,7 @@
             opacity: 0.6;
             transform: rotate(15deg);
             z-index: 2;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
             display: block !important;
             -webkit-mask: none !important;
             mask: none !important;
@@ -671,7 +551,7 @@
             backdrop-filter: blur(30px);
             padding: 55px 60px;
             border-radius: 28px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
             text-align: left;
             border: 1px solid rgba(255, 182, 193, 0.06);
             position: relative;
@@ -740,14 +620,8 @@
             animation: modalFade 0.4s ease-out;
         }
         @keyframes modalFade {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
         .close {
             position: absolute;
@@ -763,8 +637,7 @@
             transform: rotate(90deg) scale(1.1);
             color: #ff8fab;
         }
-        .prev,
-        .next {
+        .prev, .next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -780,14 +653,9 @@
             border: 1px solid rgba(255, 182, 193, 0.08);
             transition: 0.4s;
         }
-        .prev {
-            left: 30px;
-        }
-        .next {
-            right: 30px;
-        }
-        .prev:hover,
-        .next:hover {
+        .prev { left: 30px; }
+        .next { right: 30px; }
+        .prev:hover, .next:hover {
             background: rgba(255, 107, 138, 0.12);
             border-color: rgba(255, 107, 138, 0.2);
             transform: translateY(-50%) scale(1.05);
@@ -808,165 +676,56 @@
             border-radius: 10px;
             animation: visualizerBeat 0.8s ease-in-out infinite alternate;
         }
-        .music-visualizer .bar:nth-child(1) {
-            animation-delay: 0s;
-            height: 30%;
-        }
-        .music-visualizer .bar:nth-child(2) {
-            animation-delay: 0.1s;
-            height: 60%;
-        }
-        .music-visualizer .bar:nth-child(3) {
-            animation-delay: 0.2s;
-            height: 80%;
-        }
-        .music-visualizer .bar:nth-child(4) {
-            animation-delay: 0.3s;
-            height: 50%;
-        }
-        .music-visualizer .bar:nth-child(5) {
-            animation-delay: 0.4s;
-            height: 90%;
-        }
-        .music-visualizer .bar:nth-child(6) {
-            animation-delay: 0.5s;
-            height: 40%;
-        }
-        .music-visualizer .bar:nth-child(7) {
-            animation-delay: 0.6s;
-            height: 70%;
-        }
-        .music-visualizer .bar:nth-child(8) {
-            animation-delay: 0.7s;
-            height: 55%;
-        }
-        .music-visualizer .bar:nth-child(9) {
-            animation-delay: 0.8s;
-            height: 85%;
-        }
-        .music-visualizer .bar:nth-child(10) {
-            animation-delay: 0.9s;
-            height: 45%;
-        }
-
+        .music-visualizer .bar:nth-child(1) { animation-delay: 0s; height: 30%; }
+        .music-visualizer .bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+        .music-visualizer .bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+        .music-visualizer .bar:nth-child(4) { animation-delay: 0.3s; height: 50%; }
+        .music-visualizer .bar:nth-child(5) { animation-delay: 0.4s; height: 90%; }
+        .music-visualizer .bar:nth-child(6) { animation-delay: 0.5s; height: 40%; }
+        .music-visualizer .bar:nth-child(7) { animation-delay: 0.6s; height: 70%; }
+        .music-visualizer .bar:nth-child(8) { animation-delay: 0.7s; height: 55%; }
+        .music-visualizer .bar:nth-child(9) { animation-delay: 0.8s; height: 85%; }
+        .music-visualizer .bar:nth-child(10) { animation-delay: 0.9s; height: 45%; }
         @keyframes visualizerBeat {
-            0% {
-                height: 20%;
-            }
-            100% {
-                height: 100%;
-            }
+            0% { height: 20%; }
+            100% { height: 100%; }
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 35px 25px;
-            }
-            .letter {
-                padding: 40px 35px;
-            }
-            .photo-card .photo {
-                height: 280px;
-            }
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 35px 25px; }
+            .letter { padding: 40px 35px; }
+            .photo-card .photo { height: 280px; }
         }
-
         @media (max-width: 600px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 10px 0;
-            }
-            .hero h1 {
-                letter-spacing: 2px;
-                font-size: 38px;
-            }
-            .hero p {
-                font-size: 17px;
-            }
-            .gallery-section {
-                padding: 50px 16px;
-            }
-            .photo-card .photo {
-                height: 280px;
-            }
-            .photo-card {
-                padding: 10px 10px 16px 10px;
-                max-width: 340px;
-                margin: 0 auto;
-            }
-            .photo-card .photo-info h3 {
-                font-size: 14px;
-            }
-            .photo-card::before {
-                font-size: 16px;
-                top: 6px;
-                right: 8px;
-            }
-            .letter {
-                padding: 30px 20px;
-            }
-            .letter h2 {
-                font-size: 28px;
-            }
-            .prev,
-            .next {
-                width: 45px;
-                height: 55px;
-                font-size: 28px;
-            }
-            .prev {
-                left: 8px;
-            }
-            .next {
-                right: 8px;
-            }
-            .counter {
-                font-size: 22px;
-                padding: 14px 28px;
-            }
-            .counter-section {
-                padding: 60px 16px;
-            }
-            .counter-section h2 {
-                font-size: 30px;
-            }
-            #splash .big-heart {
-                font-size: 50px;
-            }
-            #splash .splash-text {
-                font-size: 18px;
-            }
-            #passwordScreen h1 {
-                font-size: 24px;
-            }
-            #passwordScreen input {
-                font-size: 16px;
-                padding: 14px 20px;
-            }
-            #passwordScreen button {
-                font-size: 16px;
-                padding: 14px 40px;
-            }
-            #passwordScreen .lock-icon {
-                font-size: 50px;
-            }
+            .gallery { grid-template-columns: 1fr; gap: 30px; padding: 10px 0; }
+            .hero h1 { letter-spacing: 2px; font-size: 38px; }
+            .hero p { font-size: 17px; }
+            .gallery-section { padding: 50px 16px; }
+            .photo-card .photo { height: 280px; }
+            .photo-card { padding: 10px 10px 16px 10px; max-width: 340px; margin: 0 auto; }
+            .photo-card .photo-info h3 { font-size: 14px; }
+            .photo-card::before { font-size: 16px; top: 6px; right: 8px; }
+            .letter { padding: 30px 20px; }
+            .letter h2 { font-size: 28px; }
+            .prev, .next { width: 45px; height: 55px; font-size: 28px; }
+            .prev { left: 8px; }
+            .next { right: 8px; }
+            .counter { font-size: 22px; padding: 14px 28px; }
+            .counter-section { padding: 60px 16px; }
+            .counter-section h2 { font-size: 30px; }
+            #splash .big-heart { font-size: 50px; }
+            #splash .splash-text { font-size: 18px; }
+            #passwordScreen h1 { font-size: 24px; }
+            #passwordScreen input { font-size: 16px; padding: 14px 20px; }
+            #passwordScreen button { font-size: 16px; padding: 14px 40px; }
+            #passwordScreen .lock-icon { font-size: 50px; }
         }
-
         @media (max-width: 400px) {
-            .photo-card .photo {
-                height: 230px;
-            }
-            .photo-card {
-                max-width: 280px;
-            }
-            .photo-card .photo-info h3 {
-                font-size: 13px;
-            }
-            .photo-card .photo-info p {
-                font-size: 11px;
-            }
+            .photo-card .photo { height: 230px; }
+            .photo-card { max-width: 280px; }
+            .photo-card .photo-info h3 { font-size: 13px; }
+            .photo-card .photo-info p { font-size: 11px; }
         }
     </style>
 </head>
@@ -988,9 +747,7 @@
     <div id="splash">
         <div class="big-heart">❤️</div>
         <div class="splash-text">OUR MEMORIES</div>
-        <div class="loading-bar">
-            <div class="fill"></div>
-        </div>
+        <div class="loading-bar"><div class="fill"></div></div>
     </div>
 
     <!-- ===== ANIMATED BACKGROUND ===== -->
@@ -1012,10 +769,7 @@
         <div class="hero-content">
             <div class="heart-main">❤️</div>
             <h1><span>OUR MEMORIES</span></h1>
-            <p>
-                "Some moments become memories.<br>
-                Some memories become forever."
-            </p>
+            <p>"Some moments become memories.<br>Some memories become forever."</p>
             <a href="#gallery" class="scroll-button">✨ Lihat Kenangan ↓</a>
         </div>
     </section>
@@ -1063,14 +817,9 @@
 
     <script>
         // ============================================================
-        // PASSWORD HASH - Password asli: "37"
+        // PASSWORD SEDERHANA - Password: "37"
         // ============================================================
-        const PASSWORD_HASH = "9d6c63dd6e81e75a732d9e0dab67a11197b188c3a7a92707ecdc1a6915a81d48";
-
-        // Debug - cek hash di console (bisa dihapus nanti)
-        console.log("Hash untuk '37' yang benar:", CryptoJS.SHA256("37").toString());
-        console.log("Hash yang disimpan:", PASSWORD_HASH);
-        console.log("Sama?", CryptoJS.SHA256("37").toString() === PASSWORD_HASH);
+        const CORRECT_PASSWORD = "37";
 
         function checkPassword() {
             const input = document.getElementById('passwordInput');
@@ -1079,21 +828,12 @@
             // Bersihkan spasi di depan/belakang
             const userPassword = input.value.trim();
 
-            // Hash input user
-            const hashedInput = CryptoJS.SHA256(userPassword).toString();
-
-            // Debug
-            console.log("Password yang diketik:", userPassword);
-            console.log("Hash dari password:", hashedInput);
-
-            // Bandingkan dengan hash yang sudah disimpan
-            if (hashedInput === PASSWORD_HASH) {
-                // Password benar - sembunyikan layar password
+            if (userPassword === CORRECT_PASSWORD) {
+                // Password benar
                 document.getElementById('passwordScreen').classList.add('hidden');
-                // Mulai konten utama
                 startMainContent();
             } else {
-                // Password salah - efek shake + error
+                // Password salah
                 error.classList.add('show');
                 input.style.animation = 'shake 0.5s';
                 input.value = '';
@@ -1105,22 +845,21 @@
             }
         }
 
-        // Tambah animasi shake
+        // Animasi shake
         const style = document.createElement('style');
         style.textContent = `
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    20% { transform: translateX(-15px); }
-                    40% { transform: translateX(15px); }
-                    60% { transform: translateX(-10px); }
-                    80% { transform: translateX(10px); }
-                }
-            `;
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                20% { transform: translateX(-15px); }
+                40% { transform: translateX(15px); }
+                60% { transform: translateX(-10px); }
+                80% { transform: translateX(10px); }
+            }
+        `;
         document.head.appendChild(style);
 
         // ===== SPLASH SCREEN =====
         function startMainContent() {
-            // Splash screen akan muncul setelah password benar
             setTimeout(function() {
                 document.getElementById('splash').classList.add('hide');
             }, 2500);
@@ -1142,7 +881,7 @@
             }
         })();
 
-        // ===== DATA FOTO (16 SLOT DENGAN FOTO UNIK) =====
+        // ===== DATA FOTO =====
         const photoData = [
             { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85", title: "Awal dari semuanya ❤️", date: "Februari 2026", desc: "Setiap perjalanan selalu dimulai dari satu langkah kecil." },
             { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85", title: "Senyum yang sederhana 💕", date: "Maret 2026", desc: "Tidak perlu sesuatu yang besar. Bersama saja sudah cukup." },
@@ -1167,40 +906,34 @@
         photoData.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'photo-card';
-
             const extraRotate = (Math.random() - 0.5) * 2;
             card.style.setProperty('--rotation', `${extraRotate}deg`);
-
             card.onclick = () => openPhoto(index);
             card.innerHTML = `
-                    <img class="photo" src="${item.src}" alt="${item.title}" loading="lazy">
-                    <div class="photo-info">
-                        <h3>${item.title}</h3>
-                        <div class="date">${item.date}</div>
-                        <p>${item.desc}</p>
-                    </div>
-                `;
+                <img class="photo" src="${item.src}" alt="${item.title}" loading="lazy">
+                <div class="photo-info">
+                    <h3>${item.title}</h3>
+                    <div class="date">${item.date}</div>
+                    <p>${item.desc}</p>
+                </div>
+            `;
             galleryGrid.appendChild(card);
         });
 
         // ===== LOVE COUNTER =====
         const startDate = new Date(2026, 4, 2);
-
         function updateCounter() {
             const now = new Date();
             let diff = now - startDate;
-
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const months = Math.floor(days / 30.44);
             const years = Math.floor(months / 12);
             const remainingMonths = Math.floor(months % 12);
             const remainingDays = Math.floor(days % 30.44);
-
             let displayText = '';
             if (years > 0) displayText += years + ' tahun ';
             if (remainingMonths > 0 || years > 0) displayText += remainingMonths + ' bulan ';
             displayText += remainingDays + ' hari';
-
             document.getElementById("counter").innerHTML = displayText + ' ❤️';
         }
         updateCounter();
@@ -1208,22 +941,18 @@
         // ===== PHOTO MODAL =====
         const photos = photoData.map(item => item.src);
         let currentPhoto = 0;
-
         function openPhoto(index) {
             currentPhoto = index;
             document.getElementById("modalImage").src = photos[currentPhoto];
             document.getElementById("photoModal").classList.add("active");
         }
-
         function closePhoto() {
             document.getElementById("photoModal").classList.remove("active");
         }
-
         function changePhoto(direction) {
             currentPhoto = (currentPhoto + direction + photos.length) % photos.length;
             document.getElementById("modalImage").src = photos[currentPhoto];
         }
-
         document.addEventListener("keydown", function(e) {
             if (e.key === "Escape") closePhoto();
             if (e.key === "ArrowLeft") changePhoto(-1);
@@ -1233,22 +962,22 @@
             if (e.target === this) closePhoto();
         });
 
-        // ===== BACKGROUND MUSIC + VISUALIZER =====
+        // ===== MUSIC PLAYER =====
         const musicContainer = document.createElement('div');
         musicContainer.style.cssText = 'position: fixed; bottom: 25px; right: 25px; z-index: 9998; background: rgba(20, 12, 16, 0.7); backdrop-filter: blur(20px); border-radius: 60px; padding: 10px 22px 10px 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05); display: flex; align-items: center; gap: 14px; font-family: Georgia, serif; font-size: 14px; color: #f5d0d9; border: 1px solid rgba(255, 182, 193, 0.08);';
         musicContainer.innerHTML = `
-                <div class="music-visualizer" id="visualizer">
-                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <button id="musicToggle" style="background: linear-gradient(135deg, #c95a7a, #a84f6d); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 18px; cursor: pointer; transition: 0.4s; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(201, 90, 122, 0.2);">🔊</button>
-                <div style="display: flex; flex-direction: column; line-height: 1.3;">
-                    <span style="font-size: 13px; font-weight: bold; color: #f5d0d9; letter-spacing: 0.5px;">🎵 1000X</span>
-                    <span style="font-size: 10px; color: #b88a98;">Ghea Indrawari</span>
-                </div>
-            `;
+            <div class="music-visualizer" id="visualizer">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <button id="musicToggle" style="background: linear-gradient(135deg, #c95a7a, #a84f6d); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 18px; cursor: pointer; transition: 0.4s; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(201, 90, 122, 0.2);">🔊</button>
+            <div style="display: flex; flex-direction: column; line-height: 1.3;">
+                <span style="font-size: 13px; font-weight: bold; color: #f5d0d9; letter-spacing: 0.5px;">🎵 1000X</span>
+                <span style="font-size: 10px; color: #b88a98;">Ghea Indrawari</span>
+            </div>
+        `;
         document.body.appendChild(musicContainer);
 
         const musicIframe = document.createElement('iframe');
@@ -1263,12 +992,10 @@
         const musicBtn = document.getElementById('musicToggle');
         const visualizer = document.getElementById('visualizer');
         let musicPlaying = true;
-
         function tryPlay() {
             musicIframe.src = 'https://www.youtube.com/embed/V6cQ4LyvOgg?autoplay=1&loop=1&playlist=V6cQ4LyvOgg&enablejsapi=1&mute=1';
         }
         tryPlay();
-
         musicBtn.addEventListener('click', function() {
             if (musicPlaying) {
                 musicIframe.src = '';
@@ -1288,44 +1015,36 @@
         // ===== EFEK KURSOR HATI =====
         (function() {
             let moveTimeout;
-
             document.addEventListener('mousemove', function(e) {
                 clearTimeout(moveTimeout);
                 moveTimeout = setTimeout(() => {}, 100);
                 createHeart(e.clientX, e.clientY);
             });
-
             function createHeart(x, y) {
                 const heart = document.createElement('div');
                 const emojis = ['❤️', '💕', '💗', '💖', '✨'];
                 heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                 heart.style.cssText = `
-                        position: fixed;
-                        left: ${x - 10}px;
-                        top: ${y - 10}px;
-                        font-size: ${Math.random() * 18 + 12}px;
-                        pointer-events: none;
-                        z-index: 99999;
-                        opacity: 1;
-                        transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                        transform: translate(0, 0) scale(1) rotate(0deg);
-                        filter: drop-shadow(0 0 10px rgba(255,107,138,0.4));
-                        user-select: none;
-                    `;
+                    position: fixed;
+                    left: ${x - 10}px;
+                    top: ${y - 10}px;
+                    font-size: ${Math.random() * 18 + 12}px;
+                    pointer-events: none;
+                    z-index: 99999;
+                    opacity: 1;
+                    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    transform: translate(0, 0) scale(1) rotate(0deg);
+                    filter: drop-shadow(0 0 10px rgba(255,107,138,0.4));
+                    user-select: none;
+                `;
                 document.body.appendChild(heart);
-
                 const xMove = (Math.random() - 0.5) * 130;
                 const yMove = -Math.random() * 180 - 60;
-
                 requestAnimationFrame(() => {
-                    heart.style.transform =
-                        `translate(${xMove}px, ${yMove}px) scale(0.1) rotate(${Math.random() * 360}deg)`;
+                    heart.style.transform = `translate(${xMove}px, ${yMove}px) scale(0.1) rotate(${Math.random() * 360}deg)`;
                     heart.style.opacity = '0';
                 });
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 1500);
+                setTimeout(() => { heart.remove(); }, 1500);
             }
         })();
 
@@ -1338,12 +1057,10 @@
                         const rect = this.getBoundingClientRect();
                         const x = (e.clientX - rect.left) / rect.width - 0.5;
                         const y = (e.clientY - rect.top) / rect.height - 0.5;
-                        this.style.transform =
-                            `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-8px) scale(1.02)`;
+                        this.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-8px) scale(1.02)`;
                     });
                     card.addEventListener('mouseleave', function() {
-                        this.style.transform =
-                            `perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)`;
+                        this.style.transform = `perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)`;
                     });
                 });
             }
