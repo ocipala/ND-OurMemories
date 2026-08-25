@@ -6,7 +6,8 @@
     <title>Our Memories ❤️</title>
     
     <!-- Library Crypto.js untuk hashing password -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js">
+    </script>
     
     <style>
         /* ===== RESET ===== */
@@ -49,8 +50,13 @@
             filter: drop-shadow(0 0 60px #ff6b8a66);
         }
         @keyframes splashPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
         }
         #passwordScreen h1 {
             color: #f5d0d9;
@@ -159,8 +165,12 @@
             animation: fadeText 1.5s ease-in-out infinite alternate;
         }
         @keyframes fadeText {
-            0% { opacity: 0.4; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0.4;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         #splash .loading-bar {
             margin-top: 30px;
@@ -178,8 +188,12 @@
             animation: loadFill 2s ease-in-out forwards;
         }
         @keyframes loadFill {
-            0% { width: 0%; }
-            100% { width: 100%; }
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
         }
 
         /* ===== ANIMATED BACKGROUND ===== */
@@ -192,9 +206,15 @@
             animation: gradientShift 15s ease infinite;
         }
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* ===== FLOATING HEARTS (Background) ===== */
@@ -212,10 +232,20 @@
             animation: bgHeartFloat 18s linear infinite;
         }
         @keyframes bgHeartFloat {
-            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0.05; }
-            10% { opacity: 0.2; }
-            90% { opacity: 0.2; }
-            100% { transform: translateY(-20vh) rotate(720deg) scale(1.2); opacity: 0.05; }
+            0% {
+                transform: translateY(110vh) rotate(0deg) scale(0.8);
+                opacity: 0.05;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(720deg) scale(1.2);
+                opacity: 0.05;
+            }
         }
 
         /* ===== GLOW ORBS ===== */
@@ -254,8 +284,12 @@
             animation-delay: -8s;
         }
         @keyframes orbFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(60px, -40px) scale(1.2); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(60px, -40px) scale(1.2);
+            }
         }
 
         /* ===== HERO ===== */
@@ -277,8 +311,14 @@
             animation: fadeInUp 1.2s ease-out;
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .heart-main {
             font-size: 72px;
@@ -287,8 +327,13 @@
             filter: drop-shadow(0 0 40px #ff6b8a88) drop-shadow(0 0 80px #ff6b8a44);
         }
         @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
         }
         .hero h1 {
             font-size: clamp(48px, 9vw, 96px);
@@ -303,8 +348,13 @@
             animation: shimmer 3s ease-in-out infinite;
         }
         @keyframes shimmer {
-            0%, 100% { text-shadow: 0 0 40px #ff6b8a66, 0 0 80px #ff6b8a33; }
-            50% { text-shadow: 0 0 60px #ff8fab88, 0 0 120px #ff6b8a55, 0 0 180px #ff6b8a33; }
+            0%,
+            100% {
+                text-shadow: 0 0 40px #ff6b8a66, 0 0 80px #ff6b8a33;
+            }
+            50% {
+                text-shadow: 0 0 60px #ff8fab88, 0 0 120px #ff6b8a55, 0 0 180px #ff6b8a33;
+            }
         }
         .hero p {
             font-size: 22px;
@@ -323,7 +373,7 @@
             color: white;
             text-decoration: none;
             transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 0 40px #c95a7a55, inset 0 1px 0 rgba(255,255,255,0.15);
+            box-shadow: 0 0 40px #c95a7a55, inset 0 1px 0 rgba(255, 255, 255, 0.15);
             font-weight: bold;
             letter-spacing: 2px;
             border: 1px solid #ffb6c144;
@@ -332,7 +382,7 @@
         .scroll-button:hover {
             transform: translateY(-6px) scale(1.03);
             background: linear-gradient(135deg, #e06b8d, #c95a7a);
-            box-shadow: 0 0 60px #c95a7a88, 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 0 60px #c95a7a88, 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .floating-heart {
@@ -343,15 +393,42 @@
             z-index: 1;
             filter: drop-shadow(0 0 15px #ff6b8a44);
         }
-        .h1 { left: 5%; animation-delay: 0s; }
-        .h2 { left: 20%; animation-delay: 3s; font-size: 38px; }
-        .h3 { left: 50%; animation-delay: 6s; }
-        .h4 { left: 75%; animation-delay: 2s; font-size: 34px; }
-        .h5 { left: 90%; animation-delay: 9s; }
+        .h1 {
+            left: 5%;
+            animation-delay: 0s;
+        }
+        .h2 {
+            left: 20%;
+            animation-delay: 3s;
+            font-size: 38px;
+        }
+        .h3 {
+            left: 50%;
+            animation-delay: 6s;
+        }
+        .h4 {
+            left: 75%;
+            animation-delay: 2s;
+            font-size: 34px;
+        }
+        .h5 {
+            left: 90%;
+            animation-delay: 9s;
+        }
         @keyframes float {
-            0% { bottom: -80px; transform: translateX(0) rotate(0deg); opacity: 0.1; }
-            50% { opacity: 0.6; }
-            100% { bottom: 110%; transform: translateX(100px) rotate(720deg); opacity: 0.1; }
+            0% {
+                bottom: -80px;
+                transform: translateX(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                bottom: 110%;
+                transform: translateX(100px) rotate(720deg);
+                opacity: 0.1;
+            }
         }
 
         /* ===== COUNTER ===== */
@@ -388,7 +465,7 @@
             border-radius: 60px;
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 182, 193, 0.12);
-            box-shadow: 0 0 60px #ff6b8a22, inset 0 1px 0 rgba(255,255,255,0.05);
+            box-shadow: 0 0 60px #ff6b8a22, inset 0 1px 0 rgba(255, 255, 255, 0.05);
             letter-spacing: 1px;
         }
 
@@ -857,9 +934,9 @@
     <script>
         // ============================================================
         // PASSWORD HASH - Password asli: "37"
-        // Hash dibuat dengan: CryptoJS.SHA256("37").toString()
+        // Hash: 9d6c63dd6e81e75a732d9e0dab67a11197b188c3a7a92707ecdc1a6915a81d48
         // ============================================================
-        const PASSWORD_HASH = "b07eacf2b1e07ad30b8d641f775398fb7ae4201dca2a682f2c60fe907702946e";
+        const PASSWORD_HASH = "9d6c63dd6e81e75a732d9e0dab67a11197b188c3a7a92707ecdc1a6915a81d48";
 
         function checkPassword() {
             const input = document.getElementById('passwordInput');
