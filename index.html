@@ -768,7 +768,7 @@
         <div class="lock-icon">🔐</div>
         <h1>💕 Untuk Kamu</h1>
         <div class="sub-text">"Hanya untuk kita berdua"</div>
-        <div class="hint">💡 Petunjuk: Tanggal kita pertama kali bertemu (DDMMYYYY)</div>
+        <div class="hint">💡 Petunjuk: Jumlah dari tanggal lahir aku dan kamu (DD+DD)</div>
         <input type="password" id="passwordInput" placeholder="contoh: 14022024" onkeydown="if(event.key==='Enter') checkPassword()">
         <button onclick="checkPassword()">Buka ❤️</button>
         <div class="error" id="errorMsg">❌ Password salah, coba lagi sayang 😘</div>
@@ -852,7 +852,7 @@
 
     <script>
         // ===== PASSWORD =====        // GANTI PASSWORD DI SINI
-        const CORRECT_PASSWORD = "ND"; // <-- Ganti dengan tanggal spesial kamu!
+        const CORRECT_PASSWORD = "37"; // <-- Ganti dengan tanggal spesial kamu!
 
         function checkPassword() {
             const input = document.getElementById('passwordInput');
